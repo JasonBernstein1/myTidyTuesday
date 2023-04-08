@@ -2,8 +2,9 @@ library(tidyverse)
 library(tidytuesdayR)
 
 # The data this week describes 380 matches between 20 teams.
-# This script does some EDA and plots the percentage of wins,
-# ties, and losses by team.
+# This script:
+# - performs basic EDA on the matches and teams;
+# - plots the percentage of wins, ties, and losses by team.
 
 # load data
 tuesdata <- tidytuesdayR::tt_load(2023, week = 14)
