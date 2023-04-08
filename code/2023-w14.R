@@ -26,7 +26,9 @@ all(matches + diag(20) == 1)
 
 # tabulate wins per team
 df_wins <- soccer |>
+  # remove ties
   filter(HS != AS) |>
+  # compute winning team
   mutate(team = case_when(
     HS > AS ~ HomeTeam,
     AS > HS ~ AwayTeam
@@ -37,7 +39,9 @@ df_wins <- soccer |>
 
 # tabulate losses per team
 df_losses <- soccer |>
+  # remove ties
   filter(HS != AS) |>
+  # compute losing team
   mutate(team = case_when(
     HS < AS ~ HomeTeam,
     AS < HS ~ AwayTeam
