@@ -15,14 +15,14 @@ matches <- soccer |>
   table()
 
 # 20 teams total
-dim(matches)
+n_teams <- n_distinct(c(soccer$HomeTeam, soccer$AwayTeam))
 
 # each team played 38 games, 19 away and 19 at home
 rowSums(matches) # number of home games
 colSums(matches) # number of away games
 
 # check each team played every other team exactly once
-all(matches + diag(20) == 1)
+all(matches + diag(n_teams) == 1)
 
 # tabulate wins per team
 df_wins <- soccer |>
