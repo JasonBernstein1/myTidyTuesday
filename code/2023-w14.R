@@ -1,7 +1,7 @@
 library(tidyverse)
 library(tidytuesdayR)
 
-# The data this week describes 380 games between 20 teams.
+# The data this week describes 380 matches between 20 teams.
 # This script does some EDA and plots the percentage of wins,
 # ties, and losses by team.
 
