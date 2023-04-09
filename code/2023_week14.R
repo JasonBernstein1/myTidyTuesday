@@ -70,8 +70,8 @@ df_wins |>
   scale_fill_discrete(breaks = c('win', 'tie', 'loss')) +
   coord_flip() +
   labs(x = '', y = 'Match Outcome (%)', fill = '',
-       title = 'Percentage of Matches Won, Lost, or Tied',
-       subtitle = 'Each team played 38 matches') +
+       title = 'British Soccer Match Outcomes (2021-2022)',
+       caption = 'TidyTuesday: 2023, week 14.') +
   theme_minimal(base_size = 12) +
   theme(
     aspect.ratio = 1,
@@ -80,8 +80,8 @@ df_wins |>
     panel.grid.major.y = element_blank(),
     axis.text = element_text(size = 12),
     legend.text = element_text(size = 12),
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5)
+    legend.position = 'top',
+    plot.title = element_text(hjust = 0.5)
   )
 
 ggsave(filename = './images/2023_week14.png', bg = 'white')
