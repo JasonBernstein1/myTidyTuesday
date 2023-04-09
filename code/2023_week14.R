@@ -84,4 +84,4 @@ df_wins |>
     plot.subtitle = element_text(hjust = 0.5)
   )
 
-ggsave(filename = './images/2023-w14.png', bg = 'white')
+ggsave(filename = './images/2023_week14.png', bg = 'white')
