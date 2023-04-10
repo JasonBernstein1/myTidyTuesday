@@ -12,14 +12,13 @@ dfs <- tidytuesdayR::tt_load(2023, week = 13)
 min_date <- as.Date("1960-01-01", format = "%Y-%m-%d")
 max_date <- as.Date("2023-04-09", format = "%Y-%m-%d") 
 
-# get latest DST status for each location in data set
+# get most recent DST status for each location in data
 df_dst <- dfs$transitions |>
   mutate(begin = lubridate::as_datetime(begin)) |>
   filter(begin > min_date & begin < max_date) |>
   select(zone, begin, dst) |>
-  group_by(zone) |>
-  # take the last DST status of each location
-  slice_max(begin, n = 1) |>
+  # take the most recent DST status of each location
+  slice_max(begin, n = 1, by = zone) |>
   # bring in lat/lon data, keeps locations with given DST status
   left_join(dfs$timezones) |>
   mutate(dst_active = ifelse(dst, 'DST Is Active', 'DST Is Inactive'))
@@ -27,7 +26,7 @@ df_dst <- dfs$transitions |>
 # Phoenix is currently not in DST
 df_dst |> filter(str_detect(zone, 'Phoenix')) |> select(zone, dst)
 
-# Indiana has 11 points in the data (3 missing coordinates)
+# Indiana has 11 locations currently in DST (3 missing coordinates)
 df_dst |> filter(str_detect(zone, 'Indiana')) |> select(zone, dst)
 
 # coordinate reference system (CRS) for World Geodetic System 1984
