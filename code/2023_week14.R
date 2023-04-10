@@ -26,7 +26,7 @@ colSums(matches) # number of away games
 all(matches + diag(n_teams) == 1)
 
 # tabulate wins per team
-wins <- soccer |>
+team_wins <- soccer |>
   # remove ties
   filter(HS != AS) |>
   # compute winning team
@@ -39,7 +39,7 @@ wins <- soccer |>
   ungroup()
 
 # tabulate losses per team
-losses <- soccer |>
+team_losses <- soccer |>
   # remove ties
   filter(HS != AS) |>
   # compute losing team
@@ -52,8 +52,8 @@ losses <- soccer |>
   ungroup()
 
 # plot percentage of wins, losses, and ties by team
-wins |>
-  full_join(losses) |>
+team_wins |>
+  full_join(team_losses) |>
   replace_na(list(loss = 0)) |>
   mutate(team = fct_reorder(team, win)) |>
   # compute ties using win + loss + tie = 38
