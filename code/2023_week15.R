@@ -47,7 +47,7 @@ df |>
   ggplot() +
   geom_line(aes(observed_month, egg_to_hen_ratio, col = prod_process, 
                 group = prod_process), linewidth = 1.1) +
-  # add vertical lines at Feb. 28, noticeable dips here
+  # add vertical lines at Feb. 28 since noticeable dips here
   geom_vline(xintercept = as.Date(paste(2017:2022, "-02-28", sep = "")),
              linetype = 'dashed', alpha = 0.6) +
   labs(x = 'Date', y = 'Egg-to-Hen Ratio',
