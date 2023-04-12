@@ -14,19 +14,22 @@ eggproduction <- tuesdata$`egg-production` |>
 with(eggproduction, table(prod_process, prod_type))
 
 # The egg-to-hen ratio for cage-free organic and cage-free non-organic
-# points are close to one. Hence, lump all cage-free eggs together for 
-# this plot.
-
-organic_eggprod <- eggproduction |>
-  filter(prod_process == 'cage-free (organic)') |>
-  select(observed_month, egg_to_hen_ratio)
-
-nonorganic_eggprod <- eggproduction |>
-  filter(prod_process == 'cage-free (non-organic)') |>
-  select(observed_month, egg_to_hen_ratio)
-
-# ratios close to one for organic or non-organic, so effectively the same
-range(organic_eggprod$egg_to_hen_ratio / nonorganic_eggprod$egg_to_hen_ratio)
+# production processes are similar. 
+# Here we check ratios are similar for organic and non-organic production.
+# Hence, we lump all cage-free eggs together for the final plot.
+eggproduction |>
+  filter(prod_process == 'cage-free (organic)' |
+         prod_process == 'cage-free (non-organic)') |>
+  select(observed_month, prod_process, egg_to_hen_ratio) |>
+  pivot_wider(names_from = prod_process, values_from = egg_to_hen_ratio) |>
+  # plot ratios against each other to see they are similar
+  ggplot() +
+  geom_point(aes(`cage-free (organic)`, `cage-free (non-organic)`)) +
+  geom_abline(intercept = 0, slope = 1, col = 'red') +
+  labs(x = 'Egg-to-Hen Ratio for Cage-free (Organic) Eggs',
+       y = 'Egg-to-Hen Ratio for Cage-free (Non-organic) Eggs',
+       title = 'Egg-to-Hen Ratio for Organic and Non-Organic Production') +
+  theme(aspect.ratio = 1)
 
 # format data for plotting
 df <- eggproduction |>
