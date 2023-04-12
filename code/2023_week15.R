@@ -13,13 +13,12 @@ eggproduction <- tuesdata$`egg-production` |>
 # tabulate number of points by production process and type
 with(eggproduction, table(prod_process, prod_type))
 
-# The egg-to-hen ratio for cage-free organic and cage-free non-organic
-# production processes are similar. 
-# Here we check ratios are similar for organic and non-organic production.
-# Hence, we lump all cage-free eggs together for the final plot.
+# The egg-to-hen ratio for 'cage-free (organic)' and 'cage-free (non-organic)'
+# production processes are similar. Here we check ratios are similar for 
+# organic and non-organic production. Hence, we lump all cage-free eggs 
+# together for the final plot.
 eggproduction |>
-  filter(prod_process == 'cage-free (organic)' |
-         prod_process == 'cage-free (non-organic)') |>
+  filter(str_starts(prod_process, 'cage-free')) |>
   select(observed_month, prod_process, egg_to_hen_ratio) |>
   pivot_wider(names_from = prod_process, values_from = egg_to_hen_ratio) |>
   # plot ratios against each other to see they are similar
