@@ -54,12 +54,11 @@ df |>
        col = 'Production Process',
        title = 'Egg-to-Hen Ratio',
        subtitle = 'July 2016 - Feb. 2021',
-       caption = 'Vertical lines indicate Feb. 28 every year.\n
+       caption = 'Vertical lines indicate Feb. 28.\n
                   TidyTuesday: 2023, week 15.') +
   scale_color_manual(values = c("darkgreen", "red")) +
   theme_bw(base_size = 12) +
   theme(
-    aspect.ratio = 1,
     legend.position = 'top',
     plot.title = element_text(hjust = 0.5, size = 18),
     plot.subtitle = element_text(hjust = 0.5, vjust = -0.7),
@@ -70,4 +69,5 @@ df |>
   ) +
   facet_grid(~ prod_type)
 
-ggsave(filename = './images/2023_week15.png', bg = 'beige')
+ggsave(filename = './images/2023_week15.png', bg = 'beige',
+       height = 10, width = 15)
