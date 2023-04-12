@@ -26,15 +26,17 @@ eggproduction |>
   ggplot() +
   geom_point(aes(`cage-free (organic)`, `cage-free (non-organic)`)) +
   geom_abline(intercept = 0, slope = 1, col = 'red') +
-  labs(x = 'Egg-to-Hen Ratio for Cage-free (Organic) Eggs',
-       y = 'Egg-to-Hen Ratio for Cage-free (Non-organic) Eggs',
-       title = 'Egg-to-Hen Ratio for Organic and Non-Organic Production') +
+  labs(
+    x = 'Egg-to-Hen Ratio for Cage-free (Organic) Eggs',
+    y = 'Egg-to-Hen Ratio for Cage-free (Non-organic) Eggs',
+    title = 'Egg-to-Hen Ratio for Organic and Non-Organic Production'
+  ) +
   theme(aspect.ratio = 1)
 
 # format data for plotting
 df <- eggproduction |>
   # remove non-organic values since they are similar to organic values
-  filter(!str_detect(prod_process, '(non-organic)')) |>
+  filter(prod_process != 'cage-free (non-organic)') |>
   # Capitalize variable names to appear nicer in plot
   mutate(prod_process = case_when(
     prod_process == 'all' ~ 'All',
@@ -53,12 +55,15 @@ df |>
   # add vertical lines at Feb. 28 since noticeable dips here
   geom_vline(xintercept = as.Date(paste(2017:2022, "-02-28", sep = "")),
              linetype = 'dashed', alpha = 0.6) +
-  labs(x = 'Date', y = 'Egg-to-Hen Ratio',
-       col = 'Production Process',
-       title = 'Egg-to-Hen Ratio',
-       subtitle = 'July 2016 - Feb. 2021',
-       caption = 'Vertical lines indicate Feb. 28.\n
-                  TidyTuesday: 2023, week 15.') +
+  labs(
+    x = 'Date',
+    y = 'Egg-to-Hen Ratio',
+    col = 'Production Process',
+    title = 'Egg-to-Hen Ratio',
+    subtitle = 'July 2016 - Feb. 2021',
+    caption = 'Vertical lines indicate Feb. 28.\n
+               TidyTuesday: 2023, week 15.'
+  ) +
   scale_color_manual(values = c("darkgreen", "red")) +
   theme_bw(base_size = 12) +
   theme(
