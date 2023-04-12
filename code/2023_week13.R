@@ -49,9 +49,13 @@ countries |>
   geom_sf(data = dst_status_sf, aes(fill = dst_active), alpha = 0.7,
           size = 2, shape = 21) +
   coord_sf(expand = F) +
-  labs(x = 'Longitude', y = 'Latitude', fill = '',
-       title = 'Where is Daylight Savings Time (DST) Currently Active?',
-       caption = 'TidyTuesday: 2023, week 13.') +
+  labs(
+    x = 'Longitude',
+    y = 'Latitude',
+    fill = '',
+    title = 'Where is Daylight Savings Time (DST) Currently Active?',
+    caption = 'TidyTuesday: 2023, week 13.'
+  ) +
   scale_x_continuous(breaks = seq(-180, 180, 60)) +
   scale_y_continuous(breaks = seq(-90, 90, 45)) +
   scale_fill_manual(values = c("red", "blue")) +
