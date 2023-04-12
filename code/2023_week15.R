@@ -24,7 +24,7 @@ eggproduction |>
   pivot_wider(names_from = prod_process, values_from = egg_to_hen_ratio) |>
   # plot ratios against each other to see they are similar
   ggplot() +
-  geom_point(aes(`cage-free (organic)`, `cage-free (non-organic)`)) +
+  geom_point(aes(x = `cage-free (organic)`, y = `cage-free (non-organic)`)) +
   geom_abline(intercept = 0, slope = 1, col = 'red') +
   labs(
     x = 'Egg-to-Hen Ratio for Cage-free (Organic) Eggs',
@@ -46,7 +46,7 @@ df <- eggproduction |>
 # plot the egg-to-hen ratio over time
 df |>
   ggplot() +
-  geom_line(aes(observed_month, egg_to_hen_ratio, col = prod_process, 
+  geom_line(aes(x = observed_month, y = egg_to_hen_ratio, col = prod_process,
                 group = prod_process), linewidth = 1.1) +
   # add vertical lines at Feb. 28 since noticeable dips here
   geom_vline(xintercept = as.Date(paste(2017:2022, "-02-28", sep = "")),
