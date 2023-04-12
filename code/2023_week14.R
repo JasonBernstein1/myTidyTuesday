@@ -69,9 +69,13 @@ team_wins |>
   scale_y_continuous(labels = scales::percent) +
   scale_fill_discrete(breaks = c('win', 'tie', 'loss')) +
   coord_flip() +
-  labs(x = '', y = 'Match Outcome (%)', fill = '',
-       title = 'British Soccer Match Outcomes (2021-2022)',
-       caption = 'TidyTuesday: 2023, week 14.') +
+  labs(
+    x = '',
+    y = 'Match Outcome (%)',
+    fill = '',
+    title = 'British Soccer Match Outcomes (2021-2022)',
+    caption = 'TidyTuesday: 2023, week 14.'
+  ) +
   theme_minimal(base_size = 12) +
   theme(
     aspect.ratio = 1,
