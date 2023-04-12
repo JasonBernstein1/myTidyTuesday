@@ -62,9 +62,12 @@ df |>
   scale_color_manual(values = c("darkgreen", "red")) +
   theme_bw(base_size = 12) +
   theme(
+    axis.text = element_text(size = 12),
+    strip.text.x = element_text(size = 12),
+    legend.text = element_text(size = 12),
     legend.position = 'top',
     plot.title = element_text(hjust = 0.5, size = 18),
-    plot.subtitle = element_text(hjust = 0.5, vjust = -0.7),
+    plot.subtitle = element_text(hjust = 0.5, vjust = -0.7, size = 14),
     strip.background = element_rect(fill = 'lightgray', color = 'black'),
     panel.background = element_rect(fill = 'beige', color = 'black'),
     panel.grid.major = element_line(color = 'gray', linetype = 'dotted'),
