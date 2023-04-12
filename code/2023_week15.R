@@ -38,14 +38,10 @@ df <- eggproduction |>
   # remove non-organic values since they are similar to organic values
   filter(prod_process != 'cage-free (non-organic)') |>
   # Capitalize variable names to appear nicer in plot
-  mutate(prod_process = case_when(
-    prod_process == 'all' ~ 'All',
-    prod_process == 'cage-free (organic)' ~ 'Cage-free'
-  )) |>
-  mutate(prod_type = case_when(
-    prod_type == 'hatching eggs' ~ 'Hatching Eggs',
-    prod_type == 'table eggs' ~ 'Table Eggs'
-  ))
+  mutate(prod_type = str_to_sentence(prod_type)) |>
+  mutate(prod_process = str_to_sentence(prod_process)) |>
+  # remove ' (organic)' from 'Cage-free (organic)'
+  mutate(prod_process = str_remove(prod_process, ' \\(organic\\)'))
 
 # plot the egg-to-hen ratio over time
 df |>
