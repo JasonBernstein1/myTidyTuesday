@@ -54,7 +54,8 @@ df |>
        col = 'Production Process',
        title = 'Egg-to-Hen Ratio',
        subtitle = 'July 2016 - Feb. 2021',
-       caption = 'TidyTuesday: 2023, week 15.') +
+       caption = 'Vertical lines indicate Feb. 28 every year.\n
+                  TidyTuesday: 2023, week 15.') +
   scale_color_manual(values = c("darkgreen", "red")) +
   theme_bw(base_size = 12) +
   theme(
