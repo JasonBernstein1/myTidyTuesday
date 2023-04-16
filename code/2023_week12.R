@@ -46,9 +46,14 @@ df |>
   select(title, rank, n_jobs, n_users, jobs_per_user) |>
   arrange(rank)
 
+rank_R <- df |>
+  filter(title == 'R') |>
+  select(rank) |>
+  as.numeric()
+
 # plot programming languages by number of jobs per user
 df |>
-  slice_max(jobs_per_user, n = 53) |>
+  slice_max(jobs_per_user, n = rank_R) |>
   ggplot(aes(x = reorder(title, jobs_per_user), y = jobs_per_user)) +
   geom_col(aes(fill = type), width = 0.75) +
   geom_label(aes(label = title, fill = type), size = 2.5,
