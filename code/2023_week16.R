@@ -11,9 +11,12 @@ tuesdata <- tidytuesdayR::tt_load(2023, week = 16)
 df <- tuesdata$founder_crops |>
   filter(!is.na(category)) |>
   select(latitude, longitude, category) |>
-  # create variable of category counts to show in facet label
-  add_count(category) |>
-  mutate(facet_label = glue('{category} (n = {n})'))
+  # create variable of category counts to show in facet label,
+  # and order subplots by increasing n_category
+  add_count(category, name = 'n_category') |>
+  mutate(facet_label = glue('{category} (n = {n_category})') |>
+                       factor() |>
+                       fct_reorder(.x = n_category))
 
 # map boundaries
 bound_box <- with(df,
