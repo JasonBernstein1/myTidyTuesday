@@ -22,7 +22,7 @@ n_teams <- n_distinct(c(soccer$HomeTeam, soccer$AwayTeam))
 rowSums(matches) # number of home games
 colSums(matches) # number of away games
 
-# check each team played every other team exactly once
+# check each team played every other team once away and once at home
 all(matches + diag(n_teams) == 1)
 
 # tabulate wins per team
@@ -34,9 +34,7 @@ team_wins <- soccer |>
     HS > AS ~ HomeTeam,
     AS > HS ~ AwayTeam
   )) |>
-  group_by(team) |>
-  count(name = 'win') |>
-  ungroup()
+  count(team, name = 'win')
 
 # tabulate losses per team
 team_losses <- soccer |>
@@ -47,12 +45,10 @@ team_losses <- soccer |>
     HS < AS ~ HomeTeam,
     AS < HS ~ AwayTeam
   )) |>
-  group_by(team) |>
-  count(name = 'loss') |>
-  ungroup()
+  count(team, name = 'loss')
 
-# plot percentage of wins, losses, and ties by team
-team_wins |>
+# compute percent of wins, losses, and ties by team
+team_stats <- team_wins |>
   full_join(team_losses) |>
   replace_na(list(loss = 0)) |>
   mutate(team = fct_reorder(team, win)) |>
@@ -61,7 +57,10 @@ team_wins |>
   pivot_longer(cols = c(win, loss, tie),
                names_to = 'outcome', values_to = 'n') |>
   group_by(team) |>
-  mutate(proportion = n / sum(n)) |>
+  mutate(proportion = n / sum(n))
+
+# plot percentage of wins, losses, and ties by team
+team_stats |>
   ggplot(aes(team, proportion, fill = outcome)) +
   geom_col(alpha = 0.75, width = 0.8) +
   geom_hline(yintercept = seq(0.25, 0.75, by = 0.25), alpha = 0.4,
