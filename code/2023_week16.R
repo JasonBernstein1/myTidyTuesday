@@ -15,7 +15,6 @@ df <- tuesdata$founder_crops |>
   # and order subplots by increasing n_category
   add_count(category, name = 'n_category') |>
   mutate(facet_label = glue('{category} (n = {n_category})') |>
-                       factor() |>
                        fct_reorder(.x = n_category))
 
 # map boundaries
