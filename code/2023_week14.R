@@ -30,10 +30,7 @@ team_wins <- soccer |>
   # remove ties
   filter(HS != AS) |>
   # compute winning team
-  mutate(team = case_when(
-    HS > AS ~ HomeTeam,
-    AS > HS ~ AwayTeam
-  )) |>
+  mutate(team = ifelse(HS > AS, HomeTeam, AwayTeam)) |>
   count(team, name = 'win')
 
 # tabulate losses per team
@@ -41,10 +38,7 @@ team_losses <- soccer |>
   # remove ties
   filter(HS != AS) |>
   # compute losing team
-  mutate(team = case_when(
-    HS < AS ~ HomeTeam,
-    AS < HS ~ AwayTeam
-  )) |>
+  mutate(team = ifelse(HS < AS, HomeTeam, AwayTeam)) |>
   count(team, name = 'loss')
 
 # compute percent of wins, losses, and ties by team
