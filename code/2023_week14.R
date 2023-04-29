@@ -77,7 +77,6 @@ team_stats |>
   ) +
   theme_minimal(base_size = 12) +
   theme(
-    aspect.ratio = 1,
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
     panel.grid.major.y = element_blank(),
