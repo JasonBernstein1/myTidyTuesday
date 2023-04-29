@@ -71,13 +71,14 @@ team_stats |>
   ) +
   theme_minimal(base_size = 12) +
   theme(
+    axis.text = element_text(size = 16),
+    axis.title = element_text(size = 16),
+    legend.text = element_text(size = 16),
+    legend.position = 'top',
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
     panel.grid.major.y = element_blank(),
-    axis.text = element_text(size = 12),
-    legend.text = element_text(size = 12),
-    legend.position = 'top',
-    plot.title = element_text(hjust = 0.5)
+    plot.title = element_text(hjust = 0.5, size = 20)
   )
 
 ggsave(filename = './images/2023_week14.png', bg = 'white')
