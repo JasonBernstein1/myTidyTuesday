@@ -12,11 +12,11 @@ london_marathon <- tuesdata$london_marathon
 # wrangle data for plot
 df <- winners |>
   # create variable indicating if record is men/women
-  mutate(is_women = str_detect(Category, 'Women')) |>
-  mutate(sex = ifelse(is_women, 'Women', 'Men')) |>
+  mutate(sex = str_detect(Category, 'Women') |>
+               ifelse('Women', 'Men')) |>
   # create variable indicating if record is wheelchair/running
-  mutate(is_wheelchair = str_detect(Category, 'Wheelchair')) |>
-  mutate(race = ifelse(is_wheelchair, 'Wheelchair', 'Running')) |>
+  mutate(race = str_detect(Category, 'Wheelchair') |>
+                ifelse('Wheelchair', 'Running')) |>
   # use 'Date' in london_marathon instead of 'Year' in winners
   left_join(london_marathon) |>
   select(Date, Time, sex, race)
