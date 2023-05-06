@@ -25,7 +25,7 @@ df |>
   ggplot() +
   geom_line(aes(x = year, y = n, col = str_to_sentence(treatment)),
             linewidth = 1.25) +
-  facet_wrap(~ mouse_or_rat, 
+  facet_wrap(~ mouse_or_rat,
              strip.position = "left",
              labeller = as_labeller(c(mouse = "Mice", rat = "Rats")),
              ncol = 1) +

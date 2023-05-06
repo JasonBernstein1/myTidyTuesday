@@ -28,7 +28,7 @@ base_map <- ggmap(get_stamenmap(bbox = bound_box, zoom = 7,
 # create separate map for each crop category
 base_map +
   geom_point(data = df,
-           aes(x = longitude, y = latitude, fill = category), 
+           aes(x = longitude, y = latitude, fill = category),
            shape = 21, alpha = 0.7, size = 3) +
   facet_wrap(~ facet_label, strip.position = "bottom") +
   labs(

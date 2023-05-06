@@ -27,7 +27,7 @@ df |>
   geom_line(aes(x = Date, y = Time, group = sex, col = sex),
             linewidth = 2) +
   facet_wrap(~ race) +
-  scale_y_time(breaks = hms(c('02:00:00', '03:00:00', '04:00:00')), 
+  scale_y_time(breaks = hms(c('02:00:00', '03:00:00', '04:00:00')),
                labels = paste(2:4, 'hours')) +
   labs(
     x = '',

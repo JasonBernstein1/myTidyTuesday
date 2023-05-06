@@ -10,7 +10,7 @@ dfs <- tidytuesdayR::tt_load(2023, week = 13)
 
 # filter locations by these dates
 min_date <- as.Date("1960-01-01", format = "%Y-%m-%d")
-max_date <- as.Date("2023-04-09", format = "%Y-%m-%d") 
+max_date <- as.Date("2023-04-09", format = "%Y-%m-%d")
 
 # get most recent DST status for each location in data
 dst_status <- dfs$transitions |>
@@ -44,7 +44,7 @@ dst_status_sf <- dst_status |>
 
 # create plot indicating locations where DST is active or not
 countries |>
-  ggplot() + 
+  ggplot() +
   geom_sf(fill = 'white') +
   geom_sf(data = dst_status_sf, aes(fill = dst_active), alpha = 0.7,
           size = 2, shape = 21) +
