@@ -80,4 +80,5 @@ df |>
     plot.title = element_text(size = 22)
   )
 
-ggsave(filename = './images/2023_week12.png', bg = 'white')
+ggsave(filename = './images/2023_week12.png', bg = 'white',
+       height = 12, width = 9)

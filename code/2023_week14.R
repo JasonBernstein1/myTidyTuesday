@@ -81,4 +81,5 @@ team_stats |>
     plot.title = element_text(hjust = 0.5, size = 20)
   )
 
-ggsave(filename = './images/2023_week14.png', bg = 'white')
+ggsave(filename = './images/2023_week14.png', bg = 'white',
+       height = 9, width = 9)

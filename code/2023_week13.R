@@ -69,4 +69,5 @@ countries |>
     panel.background = element_rect(fill = "lightblue")
   )
 
-ggsave(filename = './images/2023_week13.png', bg = 'white')
+ggsave(filename = './images/2023_week13.png', bg = 'white',
+       height = 6, width = 9)
