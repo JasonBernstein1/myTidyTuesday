@@ -29,7 +29,7 @@ df <- tuesdata$tornados |>
   ) |>
   # format facet labels to include record counts
   add_count(magnitude, name = 'n') |>
-  mutate(magnitude_label = glue('Magnitude {magnitude} (n = {n})')) |>
+  mutate(magnitude_label = glue::glue('Magnitude {magnitude} (n = {n})')) |>
   select(magnitude, magnitude_label, x, y, angle_deg, angle_rad)
 
 # compute circular mean for each magnitude using von Mises distribution
@@ -39,7 +39,7 @@ summary_stats <- df |>
     circular_mean_deg = radians_to_degrees(circular_mean_rad),
     max_hist_count = max(hist(angle_deg, breaks = seq(-180, 180, 10),
                               plot = F)$counts),
-    mean_text = glue("Mean: {round(circular_mean_deg, 2)}{glue('\u00B0')}"),
+    mean_text = glue::glue("Mean: {round(circular_mean_deg, 2)}{'\u00B0'}"),
     .by = magnitude_label
   )
 
