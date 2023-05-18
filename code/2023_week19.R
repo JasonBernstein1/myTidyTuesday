@@ -88,4 +88,5 @@ df_map |>
     \nTidyTuesday: 2023, week 19.'
   )
 
-ggsave(filename = './images/2023_week19.png', bg = 'black')
+ggsave(filename = './images/2023_week19.png', bg = 'black',
+       height = 12, width = 10)
