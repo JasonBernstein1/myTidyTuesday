@@ -60,7 +60,8 @@ team_stats |>
   geom_hline(yintercept = seq(0.25, 0.75, by = 0.25), alpha = 0.4,
              linetype = 'dashed') +
   scale_y_continuous(labels = scales::percent) +
-  scale_fill_discrete(breaks = c('win', 'tie', 'loss')) +
+  scale_fill_discrete(breaks = c('win', 'tie', 'loss'),
+                      labels = c('Win', 'Tie', 'Loss')) +
   coord_flip() +
   labs(
     x = '',
