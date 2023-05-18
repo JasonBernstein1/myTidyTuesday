@@ -73,11 +73,11 @@ team_stats |>
   theme(
     axis.text = element_text(size = 16),
     axis.title = element_text(size = 16),
-    legend.text = element_text(size = 16),
     legend.position = 'top',
+    legend.text = element_text(size = 16),
     panel.grid.major.x = element_blank(),
-    panel.grid.minor.x = element_blank(),
     panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
     plot.title = element_text(hjust = 0.5, size = 20)
   )
 
