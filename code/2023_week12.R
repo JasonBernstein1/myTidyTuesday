@@ -69,12 +69,15 @@ df |>
   ) +
   theme_bw() +
   theme(
+    axis.text.x = element_text(size = 14),
+    axis.text.y = element_text(size = 12),
+    axis.title.x = element_text(size = 14),
     legend.position = c(.76, .5),
-    legend.text = element_text(size = 12),
-    axis.text = element_text(size = 10),
-    plot.title = element_text(size = 18),
+    legend.text = element_text(size = 14),
+    legend.title = element_text(size = 16),
+    panel.grid.major.y = element_line(color = NA),
     panel.grid.minor = element_line(color = NA),
-    panel.grid.major.y = element_line(color = NA)
+    plot.title = element_text(size = 22)
   )
 
 ggsave(filename = './images/2023_week12.png', bg = 'white')
