@@ -39,8 +39,8 @@ top_counties <- df |>
   select(county_name, estimate) |>
   slice_max(n = 5, order_by = estimate) |>
   mutate(County = str_to_sentence(county_name),
-         Estimate = round(estimate)) |>
-  select(County, Estimate)
+         `Increase in\nAnnual Cost ($)` = round(estimate)) |>
+  select(County, `Increase in\nAnnual Cost ($)`)
 
 # positions of county labels on map
 label_coords <- tribble(
