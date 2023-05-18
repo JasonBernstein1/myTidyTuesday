@@ -67,18 +67,18 @@ df_map |>
                        option = "inferno",
                        limits = c(100, 400)) +
   geom_label(data = label_coords, aes(x = lon, y = lat, label = county_name),
-             size = 4) +
+             size = 6) +
   annotate(geom = "table", x = -90, y = 43.25, label = list(top_counties),
-           size = 5, fontface = "bold") +
+           size = 6, fontface = "bold") +
   theme(
     axis.text = element_blank(),
     axis.ticks = element_blank(),
     legend.key.width = unit(1, 'cm'),
     legend.position = 'top',
-    legend.text = element_text(size = 14),
-    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 16),
+    legend.title = element_text(size = 16),
     panel.background = element_rect(color = "black"),
-    plot.title = element_text(hjust = 0.5, size = 18)
+    plot.title = element_text(hjust = 0.5, size = 22)
   ) +
   labs(
     x = '',
