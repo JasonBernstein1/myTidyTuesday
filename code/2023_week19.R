@@ -25,6 +25,7 @@ df <- costs |>
   group_by(county_fips_code, county_name) |>
   do(broom::tidy(lm(mc_infant_annual ~ study_year, .))) |>
   ungroup() |>
+  rename(effect_of_year = estimate) |>
   # keep rows for slope in linear models, remove rows for intercept
   filter(term == 'study_year') |>
   # format county name so can join this data with map data
@@ -32,14 +33,14 @@ df <- costs |>
                        str_replace(' county', '') |>
                        # remove '.' from st. clair and st. joseph
                        str_replace('\\.', '')) |>
-  select(county_fips_code, county_name, estimate)
+  select(county_fips_code, county_name, effect_of_year)
 
 # determine the five counties with the highest annual cost increases
 top_counties <- df |>
-  select(county_name, estimate) |>
-  slice_max(n = 5, order_by = estimate) |>
+  select(county_name, effect_of_year) |>
+  slice_max(n = 5, order_by = effect_of_year) |>
   mutate(County = str_to_sentence(county_name),
-         `Increase in\nAnnual Cost ($)` = round(estimate)) |>
+         `Increase in\nAnnual Cost ($)` = round(effect_of_year)) |>
   select(County, `Increase in\nAnnual Cost ($)`)
 
 # positions of county labels on map
@@ -60,7 +61,7 @@ df_map <- map_data(map = "county", region = "michigan") |>
 # map annual increase in cost of infant care by county
 df_map |>
   ggplot() +
-  geom_polygon(aes(lon, lat, group = group, fill = estimate),
+  geom_polygon(aes(lon, lat, group = group, fill = effect_of_year),
                colour = "darkgray") +
   scale_fill_viridis_c(name = "Increase in Annual Cost ($)   ",
                        option = "inferno",
