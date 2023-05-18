@@ -75,8 +75,8 @@ df |>
     legend.position = c(.76, .5),
     legend.text = element_text(size = 14),
     legend.title = element_text(size = 16),
-    panel.grid.major.y = element_line(color = NA),
-    panel.grid.minor = element_line(color = NA),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
     plot.title = element_text(size = 22)
   )
 
