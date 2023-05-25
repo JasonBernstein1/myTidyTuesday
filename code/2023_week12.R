@@ -35,10 +35,7 @@ df <- tuesdata$languages |>
   )) |>
   # improve formatting of type variable for clearer plot legend
   mutate(type = camelcase_to_sentence(type)) |>
-  mutate(type = case_when(
-    type == 'Xml format' ~ 'XML format',
-    TRUE ~ type
-  ))
+  mutate(type = ifelse(type == 'Xml format', 'XML format', type))
 
 # COBOL ranks 50th, R ranks 53rd, SAS ranks 55th in jobs per user
 df |>
