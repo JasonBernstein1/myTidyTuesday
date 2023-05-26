@@ -64,9 +64,9 @@ team_stats |>
                       labels = c('Win', 'Tie', 'Loss')) +
   coord_flip() +
   labs(
-    x = '',
+    x = element_blank(),
     y = 'Match Outcome (%)',
-    fill = '',
+    fill = element_blank(),
     title = 'British Soccer Match Outcomes (2021-2022)',
     caption = 'TidyTuesday: 2023, week 14.'
   ) +

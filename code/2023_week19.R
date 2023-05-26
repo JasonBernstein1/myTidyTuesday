@@ -81,8 +81,8 @@ df_map |>
     plot.title = element_text(hjust = 0.5, size = 22)
   ) +
   labs(
-    x = '',
-    y = '',
+    x = element_blank(),
+    y = element_blank(),
     title = 'Estimated Increase in Annual Cost of Center-based Infant Care',
     caption = 'Data available for 2008-2018. Estimates based on linear model.
     \nTidyTuesday: 2023, week 19.'

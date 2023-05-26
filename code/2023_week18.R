@@ -31,9 +31,9 @@ df |>
              ncol = 1) +
   scale_y_log10() +
   labs(
-    x = '',
-    y = '',
-    col = '',
+    x = element_blank(),
+    y = element_blank(),
+    col = element_blank(),
     title = 'Rodent Counts by Treatment over Time',
     caption = 'TidyTuesday: 2023, week 18.'
   ) +

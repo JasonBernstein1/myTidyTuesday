@@ -30,12 +30,12 @@ df |>
   scale_y_time(breaks = hms(c('02:00:00', '03:00:00', '04:00:00')),
                labels = paste(2:4, 'hours')) +
   labs(
-    x = '',
-    y = '',
+    x = element_blank(),
+    y = element_blank(),
     title = 'London Marathon Winning Times',
-    subtitle = '',
+    subtitle = element_blank(),
     caption = 'TidyTuesday: 2023, week 17.',
-    col = ''
+    col = element_blank()
   ) +
   theme(
     axis.text = element_text(color = 'white', size = 12),

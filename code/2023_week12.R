@@ -58,7 +58,7 @@ df |>
   scale_y_log10(limits = c(0.01, 100)) +
   coord_flip() +
   labs(
-    x = '',
+    x = element_blank(),
     y = 'Jobs per User',
     fill = 'Language Type',
     title = 'Fifty-three Top Languages by Jobs per User',

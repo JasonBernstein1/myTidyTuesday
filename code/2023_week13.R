@@ -52,7 +52,7 @@ countries |>
   labs(
     x = 'Longitude',
     y = 'Latitude',
-    fill = '',
+    fill = element_blank(),
     title = 'Where is Daylight Savings Time (DST) Currently Active?',
     caption = 'TidyTuesday: 2023, week 13.'
   ) +

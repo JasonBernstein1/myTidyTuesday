@@ -59,8 +59,8 @@ df |>
     aes(x = 315, y = 0.8 * max_hist_count, label = mean_text),
     size = 5) +
   labs(
-    x = '',
-    y = '',
+    x = element_blank(),
+    y = element_blank(),
     title = 'Distribution of Tornado Directions by Magnitude',
     subtitle = 'Paths shift from SE to NE as magnitude increases.',
     caption = 'TidyTuesday: 2023, week 20.'

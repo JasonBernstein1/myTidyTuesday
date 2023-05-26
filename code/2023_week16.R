@@ -32,8 +32,8 @@ base_map +
            shape = 21, alpha = 0.7, size = 3) +
   facet_wrap(~ facet_label, strip.position = "bottom") +
   labs(
-    x = '',
-    y = '',
+    x = element_blank(),
+    y = element_blank(),
     title = 'Locations of Neolithic Founder Crops',
     caption = 'TidyTuesday: 2023, week 16.'
   ) +
