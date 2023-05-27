@@ -1,7 +1,6 @@
 library(tidyverse)
 library(tidytuesdayR)
 library(ggmap)
-library(glue)
 
 # This script plots locations of Neolithic founder crops on a map
 # of the region.

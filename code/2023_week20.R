@@ -1,6 +1,5 @@
 library(tidyverse)
 library(tidytuesdayR)
-library(glue)
 
 # This script plots the distribution of tornado directions by magnitude.
 # The direction is defined here as the angle from the starting (lon, lat)
