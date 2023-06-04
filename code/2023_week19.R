@@ -62,7 +62,7 @@ df_map <- map_data(map = "county", region = "michigan") |>
 df_map |>
   ggplot() +
   geom_polygon(aes(lon, lat, group = group, fill = effect_of_year),
-               colour = "darkgray") +
+               color = "darkgray") +
   scale_fill_viridis_c(name = "Increase in Annual Cost ($)   ",
                        option = "inferno",
                        limits = c(100, 400)) +
