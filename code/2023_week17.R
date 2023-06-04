@@ -23,9 +23,13 @@ df <- winners |>
 
 # plot time series of winning times by wheelchair/running and men/women
 df |>
-  ggplot(aes(x = Date, y = Time, col = sex)) +
-  geom_line(linewidth = 1) +
+  ggplot(aes(x = Date, y = Time, color = sex)) +
+  geom_line(linewidth = 0.4) +
+  geom_point(aes(shape = sex)) +
   facet_wrap(~ race) +
+  scale_color_manual(values = c("Men" = "#FF8C00", "Women" = "#FFFACD"),
+                     name = NULL) +
+  scale_shape_manual(values = c("Men" = 1, "Women" = 2), name = NULL) +
   scale_y_time(breaks = hms(c('02:00:00', '03:00:00', '04:00:00')),
                labels = paste(2:4, 'hours')) +
   labs(
@@ -34,19 +38,19 @@ df |>
     title = 'London Marathon Winning Times',
     subtitle = element_blank(),
     caption = 'TidyTuesday: 2023, week 17.',
-    col = element_blank()
+    color = element_blank()
   ) +
   theme(
     axis.text = element_text(color = 'white', size = 12),
-    legend.position = 'bottom',
     legend.background = element_rect(fill = 'black'),
     legend.key = element_blank(),
+    legend.position = 'bottom',
     legend.text = element_text(color = 'white', size = 16),
-    plot.background = element_rect(fill = 'black', color = 'black'),
     panel.background = element_rect(fill = 'black'),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.major.y = element_line(linetype = 'dashed', color = 'gray'),
+    plot.background = element_rect(fill = 'black', color = 'black'),
     plot.title = element_text(hjust = 0.5, size = 18),
     strip.background = element_rect(fill = 'black'),
     strip.text = element_text(color = 'white', size = 16),
