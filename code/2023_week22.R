@@ -44,7 +44,9 @@ df |>
   labs(
     x = 'Age (Years)',
     y = 'Number of People',
-    title = glue::glue("The 100 Oldest <span style = 'color:{colors['male']}'>Males</span> and <span style = 'color:{colors['female']}'>Females</span>"),
+    title = glue::glue("The 100 Oldest ",
+      "<span style = 'color:{colors['male']}'>Males</span> and ",
+      "<span style = 'color:{colors['female']}'>Females</span>"),
     caption = 'TidyTuesday: 2023, week 22.'
   ) +
   theme_bw() +
