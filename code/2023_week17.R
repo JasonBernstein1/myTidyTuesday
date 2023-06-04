@@ -44,7 +44,7 @@ df |>
     axis.text = element_text(color = 'white', size = 12),
     legend.background = element_rect(fill = 'black'),
     legend.key = element_blank(),
-    legend.position = 'bottom',
+    legend.position = c(0.85, 0.675),
     legend.text = element_text(color = 'white', size = 16),
     panel.background = element_rect(fill = 'black'),
     panel.grid.minor = element_blank(),
