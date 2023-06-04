@@ -24,7 +24,7 @@ df <- winners |>
 # plot time series of winning times by wheelchair/running and men/women
 df |>
   ggplot() +
-  geom_line(aes(x = Date, y = Time, group = sex, col = sex),
+  geom_line(aes(x = Date, y = Time, col = sex),
             linewidth = 2) +
   facet_wrap(~ race) +
   scale_y_time(breaks = hms(c('02:00:00', '03:00:00', '04:00:00')),
