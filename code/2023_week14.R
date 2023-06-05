@@ -49,23 +49,22 @@ team_stats <- team_wins |>
   # compute ties using win + loss + tie = 38
   mutate(tie = 38 - win - loss) |>
   pivot_longer(cols = c(win, loss, tie),
-               names_to = 'outcome', values_to = 'n') |>
-  group_by(team) |>
-  mutate(proportion = n / sum(n))
+               names_to = 'outcome', values_to = 'n')
 
 # plot percentage of wins, losses, and ties by team
 team_stats |>
-  ggplot(aes(team, proportion, fill = outcome)) +
-  geom_col(alpha = 0.75, width = 0.8) +
-  geom_hline(yintercept = seq(0.25, 0.75, by = 0.25), alpha = 0.4,
-             linetype = 'dashed') +
-  scale_y_continuous(labels = scales::percent) +
-  scale_fill_discrete(breaks = c('win', 'tie', 'loss'),
-                      labels = c('Win', 'Tie', 'Loss')) +
-  coord_flip() +
+  ggplot(aes(x = n, y = team, fill = outcome)) +
+  geom_col(alpha = 0.75, width = 0.8, position = 'fill') +
+  geom_vline(xintercept = seq(0.25, 0.75, by = 0.25),
+             alpha = 0.4, linetype = 'dashed') +
+  scale_x_continuous(labels = scales::percent) +
+  scale_fill_manual(values = thematic::okabe_ito(3),
+                    guide = guide_legend(reverse = TRUE),
+                    labels = c('win' = 'Win', 'tie' = 'Tie',
+                               'loss' = 'Loss')) +
   labs(
-    x = element_blank(),
-    y = 'Match Outcome (%)',
+    x = 'Match Outcome (%)',
+    y = element_blank(),
     fill = element_blank(),
     title = 'British Soccer Match Outcomes (2021-2022)',
     caption = 'TidyTuesday: 2023, week 14.'
