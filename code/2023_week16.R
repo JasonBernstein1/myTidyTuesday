@@ -29,6 +29,7 @@ base_map +
   geom_point(data = df,
            aes(x = longitude, y = latitude, fill = category),
            shape = 21, alpha = 0.7, size = 3) +
+  scale_fill_brewer(palette = "Dark2") +
   facet_wrap(~ facet_label, strip.position = "bottom") +
   labs(
     x = element_blank(),
@@ -39,10 +40,11 @@ base_map +
   theme_minimal() +
   theme(
     axis.text = element_blank(),
-    strip.text.x = element_text(size = 12),
+    strip.text.x = element_text(size = 14),
     legend.position = 'none',
-    plot.title = element_text(hjust = 0.5, size = 18)
+    plot.background = element_rect(color = 'white', fill = 'white'),
+    plot.title = element_text(hjust = 0.5, size = 20)
   )
 
-ggsave(filename = './images/2023_week16.png', bg = 'white',
-       height = 6, width = 9)
+ggsave(filename = './images/2023_week16.png',
+       height = 6, width = 8)
