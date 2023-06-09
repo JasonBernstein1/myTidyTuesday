@@ -74,8 +74,9 @@ df |>
     legend.title = element_text(size = 16),
     panel.grid.major.y = element_blank(),
     panel.grid.minor = element_blank(),
+    plot.background = element_rect(fill = 'white'),
     plot.title = element_text(size = 22)
   )
 
-ggsave(filename = './images/2023_week12.png', bg = 'white',
+ggsave(filename = './images/2023_week12.png',
        height = 12, width = 9)

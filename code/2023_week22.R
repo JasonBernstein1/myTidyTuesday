@@ -57,10 +57,11 @@ df |>
     panel.border = element_rect(linewidth = 1.5),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
+    plot.background = element_rect(fill = 'white'),
     plot.title = element_markdown(size = 20, hjust = 0.5,
                                   margin = margin(b = 0.25, unit = 'cm')),
     plot.title.position = 'plot'
   )
 
-ggsave(filename = './images/2023_week22.png', bg = 'white',
+ggsave(filename = './images/2023_week22.png',
        height = 8, width = 8)

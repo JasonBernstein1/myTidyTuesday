@@ -77,5 +77,5 @@ df |>
     strip.text = element_text(size = 14)
   )
 
-ggsave(filename = './images/2023_week20.png', bg = 'beige',
+ggsave(filename = './images/2023_week20.png',
        height = 11, width = 8)

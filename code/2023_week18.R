@@ -56,5 +56,5 @@ df |>
     text = element_text(color = 'white')
   )
 
-ggsave(filename = './images/2023_week18.png', bg = 'black',
+ggsave(filename = './images/2023_week18.png',
        height = 6, width = 9)

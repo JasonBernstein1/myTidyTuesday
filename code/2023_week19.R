@@ -77,7 +77,8 @@ df_map |>
     legend.position = 'top',
     legend.text = element_text(size = 16),
     legend.title = element_text(size = 16),
-    panel.background = element_rect(color = "black"),
+    panel.background = element_rect(color = 'black'),
+    plot.background = element_rect(fill = 'white'),
     plot.title = element_text(hjust = 0.5, size = 22)
   ) +
   labs(
@@ -88,5 +89,5 @@ df_map |>
     \nTidyTuesday: 2023, week 19.'
   )
 
-ggsave(filename = './images/2023_week19.png', bg = 'black',
+ggsave(filename = './images/2023_week19.png',
        height = 12, width = 10)

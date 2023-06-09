@@ -66,8 +66,9 @@ countries |>
     legend.position = 'top',
     legend.text = element_text(size = 12),
     panel.background = element_rect(fill = "lightblue"),
+    plot.background = element_rect(fill = 'white'),
     plot.title = element_text(hjust = 0.5)
   )
 
-ggsave(filename = './images/2023_week13.png', bg = 'white',
+ggsave(filename = './images/2023_week13.png',
        height = 6, width = 9)

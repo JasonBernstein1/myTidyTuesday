@@ -77,8 +77,9 @@ team_stats |>
     legend.text = element_text(size = 16),
     panel.grid.major = element_blank(),
     panel.grid.minor.x = element_blank(),
+    plot.background = element_rect(fill = 'white'),
     plot.title = element_text(hjust = 0.5, size = 20)
   )
 
-ggsave(filename = './images/2023_week14.png', bg = 'white',
+ggsave(filename = './images/2023_week14.png',
        height = 9, width = 9)
