@@ -59,15 +59,15 @@ countries |>
   scale_x_continuous(breaks = seq(-180, 180, 60)) +
   scale_y_continuous(breaks = seq(-90, 90, 45)) +
   scale_fill_manual(values = c("red", "blue")) +
-  theme_bw(base_size = 12) +
+  theme_bw() +
   theme(
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14),
+    axis.title = element_text(size = 16),
     legend.position = 'top',
-    legend.text = element_text(size = 12),
+    legend.text = element_text(size = 14),
     panel.background = element_rect(fill = "lightblue"),
     plot.background = element_rect(fill = 'white'),
-    plot.title = element_text(hjust = 0.5)
+    plot.title = element_text(size = 20, hjust = 0.5)
   )
 
 ggsave(filename = './images/2023_week13.png',
