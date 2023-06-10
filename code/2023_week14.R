@@ -69,7 +69,7 @@ team_stats |>
     title = 'British Soccer Match Outcomes (2021-2022)',
     caption = 'TidyTuesday: 2023, week 14.'
   ) +
-  theme_minimal(base_size = 12) +
+  theme_minimal() +
   theme(
     axis.text = element_text(size = 16),
     axis.title = element_text(size = 16),
