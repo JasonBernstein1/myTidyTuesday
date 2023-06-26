@@ -34,6 +34,7 @@ state_centers <- data.frame(
     long = state.center$x,
     lat =  state.center$y
   ) |>
+  # only keep states that have an above average number of sightings
   left_join(df) |>
   filter(is_above_average)
 
@@ -42,7 +43,7 @@ top_states <- df |>
   slice_max(n = 7, order_by = n) |>
   select(State = state_abb, Sightings = n)
 
-# first and last sighting
+# dates of first and last sighting
 range_dates <- ufo_sightings |>
   pull(reported_date_time) |>
   range() |>
@@ -81,6 +82,7 @@ ggplot() +
     aes(x = long, y = lat),
     emoji = "1f6f8"
   ) +
+  # add comment giving the average number of sightings over all states
   annotate(
     geom = 'text', x = -118, y = 26.5, size = 4,
     label = glue::glue('Average number of\n sightings by state:',
