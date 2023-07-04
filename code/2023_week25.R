@@ -104,7 +104,8 @@ ggplot() +
   theme(
     panel.background = element_rect(fill = '#b0c4de', color = '#b0c4de'),
     plot.background = element_rect(fill = '#b0c4de', color = '#b0c4de'),
-    plot.caption = element_text(vjust = 2, hjust = 1.175),
+    plot.caption = element_text(hjust = 1.175),
+    plot.margin = margin(0, 0, 0.1, 0, 'cm'),
     plot.subtitle = element_text(color = 'black', size = 12, hjust = 0.5),
     plot.title = element_text(color = 'black', size = 18, hjust = 0.5)
   )
