@@ -31,7 +31,7 @@ colors <- c(male = "#0072B2", female = "#CC79A7")
 
 # create plot of histograms of ages by gender
 df |>
-  ggplot(aes(x = age, group = gender, fill = gender)) +
+  ggplot(aes(x = age, fill = gender)) +
   geom_histogram(breaks = seq(110.5, 123, by = 0.5), color = 'black',
                  alpha = 0.5, position = 'identity') +
   # add labels for three oldest males and females
