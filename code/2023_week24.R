@@ -82,8 +82,7 @@ item_counts <- df |>
     style = cell_fill(color = "gray98"),
     locations = cells_source_notes()
   ) |>
-  tab_footnote('Source: Studying African Farmer-Led Irrigation (SAFI)') |>
-  tab_source_note('TidyTuesday: 2023, week 24')
+  tab_source_note('TidyTuesday: 2023, week 24 | Source: SAFI Survey')
 
 item_counts
 
