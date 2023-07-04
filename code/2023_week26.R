@@ -57,8 +57,9 @@ base_bar_plot <- df |>
   ggplot(aes(y = state_name)) +
   geom_bar(fill = fill_col) +
   geom_text(stat = 'count',
-            aes(label = after_stat(count)),
-            vjust = 0.5, hjust = 1.5, col = bg_col, size = 8, family = font) +
+            aes(label = after_stat(count),
+                x = after_stat(count) + 15 * (after_stat(count) < 1000) - 80),
+            vjust = 0.5, col = bg_col, size = 8, family = font) +
   labs(
     x = element_blank(),
     y = element_blank(),
