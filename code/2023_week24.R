@@ -79,7 +79,10 @@ item_counts <- df |>
     )
   ) |>
   tab_style(
-    style = cell_fill(color = "gray98"),
+    style = list(
+      cell_fill(color = "gray98"),
+      cell_text(size = "small")
+    ),
     locations = cells_source_notes()
   ) |>
   tab_source_note('TidyTuesday: 2023, week 24 | Source: SAFI Survey')
