@@ -36,22 +36,18 @@ maxmin_temps <- df |>
     date_posn = ifelse(temp < 0, date %m+% years(18), date %m-% years(18))
   )
 
-# create plot of temperature anomalies over time by hemisphere
 ggplot(df) +
-  # add reference line for no anomaly
+  # reference line for no anomaly
   geom_abline(intercept = 0, slope = 0) +
-  # add raw date/temperature data to plot
   geom_point(
     aes(x = date, y = temp),
     shape = 21, fill = 'lightgray', color = 'darkgray', alpha = 0.7
   ) +
-  # add smoothed date/temperature data to plot for each hemisphere
   geom_line(
     aes(x = date, y = temp_smoothed, col = hemisphere),
     linewidth = 1
   ) +
   scale_color_manual(values = c('#DC143C', '#0000CD')) +
-  # add plot title
   annotate(
     geom = 'label', x = lubridate::ymd("1925 01 01"), y = 1.5,
     label = 'Global Surface Temperature\nAnomaly over Time',
@@ -61,7 +57,7 @@ ggplot(df) +
     breaks = lubridate::ymd(paste(seq(1875, 2025, 25), "01 01")),
     labels = seq(1875, 2025, 25)
   ) +
-  # add labels for the largest and smallest temperature anomalies
+  # labels for the largest and smallest temperature anomalies
   geom_segment(
     data = maxmin_temps,
     aes(x = date_posn, y = temp, xend = date, yend = temp),
