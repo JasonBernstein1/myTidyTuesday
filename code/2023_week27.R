@@ -33,7 +33,7 @@ map_labels <- df |>
 
 # map of US states combined with historic marker information
 states_map <- map_data('state') |>
-  # add variable indicating whether states contain synagogues or not
+  # variable indicates whether state contains synagogue or not
   mutate(has_synagogue = region %in% tolower(map_labels$state_or_prov))
 
 # text for first 8 markers to place on west side of map
@@ -48,7 +48,6 @@ id_titles_east <- df |>
   pull(id_title) |>
   paste(collapse = '\n')
 
-# start with map of Canada and Mexico
 ggplot(map_data('world', region = c('Canada', 'Mexico'))) +
   geom_polygon(
     aes(x = long, y = lat, group = group),
@@ -77,7 +76,6 @@ ggplot(map_data('world', region = c('Canada', 'Mexico'))) +
     xlim = c(-133, -62),
     ylim = rev(c(21, 52))
   ) +
-  # add description of map to top left corner
   annotate(
     geom = 'text', x = -135, y = 23.5, size = 6, hjust = 0, fontface = 2,
     label = 'Locations of Synagogues\nwith Historic Markers \nin the United States'
@@ -91,7 +89,6 @@ ggplot(map_data('world', region = c('Canada', 'Mexico'))) +
     geom = "text", x = -79.5, y = 25, label = list(id_titles_east),
     size = 2.25, hjust = 0
   ) +
-  # add caption
   annotate(
     geom = 'text', x = -68.5, y = 52.5, size = 1.8,
     label = 'TidyTuesday: 2023, week 27 | Source: Historical Marker Database'
