@@ -29,7 +29,7 @@ df <- nh_temps |>
   select(date, month, temp, temp_smoothed, hemisphere)
 
 # extract max and min temperatures to indicate these values on the plot
-maxmin_temps <- df |>
+maxmin_temp <- df |>
   filter(temp == min(temp) | temp == max(temp)) |>
   mutate(
     date_label = as.Date(date) |> format(format = "%b. %Y"),
@@ -59,13 +59,13 @@ ggplot(df) +
   ) +
   # labels for the largest and smallest temperature anomalies
   geom_segment(
-    data = maxmin_temps,
+    data = maxmin_temp,
     aes(x = date_posn, y = temp, xend = date, yend = temp),
     arrow = arrow(length = unit(0.01, "npc")),
     linewidth = 0.5, alpha = 0.75
   ) +
   geom_label(
-    data = maxmin_temps,
+    data = maxmin_temp,
     aes(x = date_posn, y = temp,
         label = glue::glue("{date_label}: {temp} {'\u00B0'}C")),
     fill = 'lightgoldenrodyellow'
