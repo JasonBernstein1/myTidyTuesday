@@ -36,7 +36,8 @@ maxmin_temp <- df |>
     date_posn = ifelse(temp < 0, date %m+% years(18), date %m-% years(18))
   )
 
-ggplot(df) +
+df |>
+  ggplot() +
   # reference line for no anomaly
   geom_abline(intercept = 0, slope = 0) +
   geom_point(
