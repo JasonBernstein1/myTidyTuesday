@@ -7,7 +7,7 @@ library(ggrepel)
 
 tuesdata <- tidytuesdayR::tt_load(2023, week = 27)
 
-df <- tuesdata$historical_markers |>
+markers <- tuesdata$historical_markers |>
   filter(str_detect(title, 'Synagogue')) |>
   rename(
     lat = latitude_minus_s,
@@ -22,7 +22,7 @@ df <- tuesdata$historical_markers |>
 
 # labels to place on map indicating locations of historic markers
 # three markers in Columbia, South Carolina, so condense these to one label
-map_labels <- df |>
+map_labels <- markers |>
   summarise(
     id = paste(id, collapse = ', '),
     .by = c(city_or_town, state_or_prov),
@@ -33,45 +33,44 @@ map_labels <- df |>
 
 # map of US states combined with historic marker information
 states_map <- map_data('state') |>
-  # variable indicates whether state contains synagogue or not
   mutate(has_synagogue = region %in% tolower(map_labels$state_or_prov))
 
 # text for first 8 markers to place on west side of map
-id_titles_west <- df |>
+id_titles_west <- markers |>
   filter(id <= 8) |>
   pull(id_title) |>
   paste(collapse = '\n')
 
 # text for last 8 markers to place on east side of map
-id_titles_east <- df |>
+id_titles_east <- markers |>
   filter(id >= 9) |>
   pull(id_title) |>
   paste(collapse = '\n')
 
-ggplot(map_data('world', region = c('Canada', 'Mexico'))) +
+ggplot() +
   geom_polygon(
+    data = map_data('world', region = c('Canada', 'Mexico')),
     aes(x = long, y = lat, group = group),
     fill = 'seashell', color = 'black', linewidth = 0.2
   ) +
-  # add state outlines and add color to states with synagogues
   geom_polygon(
     data = states_map,
     aes(x = long, y = lat, group = group, fill = has_synagogue),
     color = 'black', linewidth = 0.2
   ) +
   scale_fill_manual(values = c('white', 'thistle1')) +
-  # indicate locations of historic markers with blue dots
   geom_point(
-    data = df, aes(x = long, y = lat),
+    data = markers,
+    aes(x = long, y = lat),
     shape = 16, size = 1.2, alpha = 1, col = 'steelblue'
   ) +
-  # add labels for location (city, state) of historic markers
   ggrepel::geom_label_repel(
-    data = map_labels, aes(x = long, y = lat, label = id_location),
+    data = map_labels,
+    aes(x = long, y = lat, label = id_location),
     size = 2, fill = 'lightyellow', seed = 1,
     segment.colour = 'red', min.segment.length = 0
   ) +
-  # set map limits and orient map so south is 'up'
+  # orient map so south is 'up'
   coord_cartesian(
     xlim = c(-133, -62),
     ylim = rev(c(21, 52))

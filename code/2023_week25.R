@@ -15,22 +15,22 @@ ufo_sightings <- tuesdata$ufo_sightings
 df <- ufo_sightings |>
   filter(country_code == 'US') |>
   # change Fl to FL
-  count(state_abb = toupper(state)) |>
+  count(state_abbreviation = toupper(state)) |>
   arrange(-n) |>
   mutate(is_above_average = n > mean(n)) |>
   # bring in full state names
   left_join(
     tibble(
-      state_abb = state.abb,
+      state_abbreviation = state.abb,
       region = tolower(state.name)
     )
   ) |>
-  select(region, state_abb, n, is_above_average)
+  select(region, state_abbreviation, n, is_above_average)
 
 # where to place state abbreviations on map
 state_centers <- data.frame(
     region = tolower(state.name),
-    state_abb = state.abb,
+    state_abbreviation = state.abb,
     long = state.center$x,
     lat =  state.center$y
   ) |>
@@ -41,7 +41,7 @@ state_centers <- data.frame(
 # table of states with most sightings to place on map
 top_states <- df |>
   slice_max(n = 7, order_by = n) |>
-  select(State = state_abb, Sightings = n)
+  select(State = state_abbreviation, Sightings = n)
 
 # dates of first and last sighting
 range_dates <- ufo_sightings |>
@@ -50,54 +50,45 @@ range_dates <- ufo_sightings |>
   as.Date() |>
   format(format = "%b %d, %Y")
 
-# where to place emojis on map
-coords_emoji <- data.frame(
+emoji_map <- data.frame(
   long = c(-122, -79, -72),
   lat = c(31, 47, 21)
 )
 
-# combine map and sightings data
-map_counts <- map_data("state") |>
+sightings_map <- map_data("state") |>
   left_join(df)
 
-# create map
-ggplot() +
-  # draw state outlines and color states with above average sightings
+sightings_map |>
+  ggplot() +
   geom_polygon(
-    data = map_counts,
     aes(x = long, y = lat, fill = is_above_average, group = group),
-    color = "white", linewidth = 0.15) +
+    color = "white", linewidth = 0.15
+  ) +
   coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
   scale_fill_manual(values = c('lightgray', 'steelblue')) +
   guides(fill = 'none') +
-  # add state abbreviation labels
   shadowtext::geom_shadowtext(
     data = state_centers,
-    aes(x = long, y = lat, label = state_abb),
+    aes(x = long, y = lat, label = state_abbreviation),
     size = 3.5, col = 'white'
   ) +
-  # add UFO emojis to map
   emoGG::geom_emoji(
-    data = coords_emoji,
+    data = emoji_map,
     aes(x = long, y = lat),
     emoji = "1f6f8"
   ) +
-  # add comment giving the average number of sightings over all states
   annotate(
     geom = 'text', x = -118, y = 26.5, size = 4,
     label = glue::glue('Average number of\n sightings by state:',
                        '{round(mean(df$n))}')
   ) +
-  # add table with the number of sightings in the top states
   annotate(
     geom = "table", x = -64, y = 22, label = list(top_states),
            size = 3, fontface = "bold", table.theme = ttheme_gtminimal
   ) +
   labs(
     title = 'UFO Sightings in 18 States Exceed the National Average',
-    subtitle = glue::glue(
-      'Data collected from {range_dates[1]} to {range_dates[2]}'
-    ),
+    subtitle = glue::glue('Data collected from {range_dates[1]} to {range_dates[2]}'),
     caption = 'TidyTuesday: 2023, week 25 | Source: National UFO Reporting Center'
   ) +
   theme_void() +
