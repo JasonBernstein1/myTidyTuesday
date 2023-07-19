@@ -32,16 +32,13 @@ top_ten_states <- df |>
   slice_max(n = 10, order_by = n) |>
   pull(state_name)
 
-# map of Alaska
-alaska <- usmap::plot_usmap(include = 'AK', fill = fill_col, color = NA) +
+alaska_map <- usmap::plot_usmap(include = 'AK', fill = fill_col, color = NA) +
   theme_void()
 
-# map of Hawaii
-hawaii <- usmap::plot_usmap(include = 'HI', fill = 'white', color = NA) +
+hawaii_map <- usmap::plot_usmap(include = 'HI', fill = 'white', color = NA) +
   theme_void()
 
-# map of the contiguous US
-contiguous_us <- map_data('state') |>
+us_contiguous_map <- map_data('state') |>
   ggplot() +
   geom_polygon(
     aes(x = long, y = lat, group = group,
@@ -81,9 +78,9 @@ base_bar_plot <- df |>
 
 # combine bar plot with maps of contiguous US, Alaska, and Hawaii
 cowplot::ggdraw(base_bar_plot) +
-  cowplot::draw_plot(contiguous_us, x = 0.625, y = 0.05, width = 0.4, height = 0.4) +
-  cowplot::draw_plot(alaska, x = 0.65, y = 0.03, width = 0.15, height = 0.15) +
-  cowplot::draw_plot(hawaii, x = 0.85, y = 0.09, width = 0.07, height = 0.05)
+  cowplot::draw_plot(us_contiguous_map, x = 0.625, y = 0.05, width = 0.4, height = 0.4) +
+  cowplot::draw_plot(alaska_map, x = 0.65, y = 0.03, width = 0.15, height = 0.15) +
+  cowplot::draw_plot(hawaii_map, x = 0.85, y = 0.09, width = 0.07, height = 0.05)
 
 ggsave(filename = './images/2023_week26.png',
        height = 8, width = 10)
