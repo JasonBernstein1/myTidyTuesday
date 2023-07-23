@@ -15,8 +15,7 @@ df <- tuesdata$detectors |>
   mutate(
     prompt_engineered = ifelse(str_detect(name, 'PE|Prompt Engineered'),
                                'Yes', 'No'),
-    name = str_replace(name, 'Prompt Engineered', 'PE') |>
-           str_replace('. PE', '')
+    name = str_remove(name, ' Prompt Engineered|. PE')
   ) |>
   arrange(desc(accuracy))
 
