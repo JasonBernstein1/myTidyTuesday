@@ -42,7 +42,7 @@ gpt_table <- df |>
     locations = cells_body()
   ) |>
   cols_align(
-    align = c("center"),
+    align = "center",
     columns = c('accuracy', 'sample_size', 'prompt_engineered')
   ) |>
   cols_label(
