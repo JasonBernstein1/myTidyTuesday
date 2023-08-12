@@ -31,7 +31,7 @@ team_wins <- soccer |>
   filter(HS != AS) |>
   # compute winning team
   mutate(team = ifelse(HS > AS, HomeTeam, AwayTeam)) |>
-  count(team, name = 'win')
+  count(team, name = "win")
 
 # tabulate losses per team
 team_losses <- soccer |>
@@ -39,7 +39,7 @@ team_losses <- soccer |>
   filter(HS != AS) |>
   # compute losing team
   mutate(team = ifelse(HS < AS, HomeTeam, AwayTeam)) |>
-  count(team, name = 'loss')
+  count(team, name = "loss")
 
 # compute percent of wins, losses, and ties by team
 team_stats <- team_wins |>
@@ -48,38 +48,45 @@ team_stats <- team_wins |>
   mutate(team = fct_reorder(team, win)) |>
   # compute ties using win + loss + tie = 38
   mutate(tie = 38 - win - loss) |>
-  pivot_longer(cols = c(win, loss, tie),
-               names_to = 'outcome', values_to = 'n')
+  pivot_longer(
+    cols = c(win, loss, tie),
+    names_to = "outcome", values_to = "n"
+  )
 
 # plot percentage of wins, losses, and ties by team
 team_stats |>
   ggplot(aes(x = n, y = team, fill = outcome)) +
-  geom_col(alpha = 0.75, width = 0.8, position = 'fill') +
-  geom_vline(xintercept = seq(0.25, 0.75, by = 0.25),
-             alpha = 0.4, linetype = 'dashed') +
+  geom_col(alpha = 0.75, width = 0.8, position = "fill") +
+  geom_vline(
+    xintercept = seq(0.25, 0.75, by = 0.25),
+    alpha = 0.4, linetype = "dashed"
+  ) +
   scale_x_continuous(labels = scales::percent) +
-  scale_fill_manual(values = thematic::okabe_ito(3),
-                    guide = guide_legend(reverse = TRUE),
-                    labels = c('win' = 'Win', 'tie' = 'Tie',
-                               'loss' = 'Loss')) +
+  scale_fill_manual(
+    values = thematic::okabe_ito(3),
+    guide = guide_legend(reverse = TRUE),
+    labels = c("win" = "Win", "tie" = "Tie", "loss" = "Loss")
+  ) +
   labs(
-    x = 'Match Outcome (%)',
+    x = "Match Outcome (%)",
     y = element_blank(),
     fill = element_blank(),
-    title = 'British Soccer Match Outcomes (2021-2022)',
-    caption = 'TidyTuesday: 2023, week 14.'
+    title = "British Soccer Match Outcomes (2021-2022)",
+    caption = "TidyTuesday: 2023, week 14."
   ) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 16),
     axis.title = element_text(size = 16),
-    legend.position = 'top',
+    legend.position = "top",
     legend.text = element_text(size = 16),
     panel.grid.major = element_blank(),
     panel.grid.minor.x = element_blank(),
-    plot.background = element_rect(fill = 'white'),
+    plot.background = element_rect(fill = "white"),
     plot.title = element_text(hjust = 0.5, size = 20)
   )
 
-ggsave(filename = './images/2023_week14.png',
-       height = 9, width = 9)
+ggsave(
+  filename = "./images/2023_week14.png",
+  height = 9, width = 9
+)
