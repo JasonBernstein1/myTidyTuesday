@@ -12,7 +12,7 @@ df <- tuesdata$states |>
     state = tolower(state),
     decile = cut(popn_density,
                  breaks = quantile(popn_density, seq(0, 1, by = 0.1)),
-                 labels = paste0(seq(0, 90, by = 10), "-", 
+                 labels = paste0(seq(0, 90, by = 10), "-",
                                  seq(10, 100, by = 10), "%"),
                           include.lowest = TRUE)
   ) |>
