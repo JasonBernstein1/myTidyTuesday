@@ -41,7 +41,7 @@ losses_per_team <- soccer |>
   ) |>
   count(team, name = "loss")
 
-# compute percent of wins, losses, and ties by team
+# compute number of wins, losses, and ties by team
 team_stats <- wins_per_team |>
   full_join(losses_per_team) |>
   replace_na(list(loss = 0)) |>
