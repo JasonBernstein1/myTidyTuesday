@@ -6,8 +6,8 @@ library(tidytuesdayR)
 # - performs basic EDA on the matches and teams;
 # - plots the percentage of wins, ties, and losses by team.
 
-# load data
 tuesdata <- tidytuesdayR::tt_load(2023, week = 14)
+
 soccer <- tuesdata$soccer
 
 # tabulate the number of games between pairs of teams
@@ -25,32 +25,35 @@ colSums(matches) # number of away games
 # check each team played every other team once away and once at home
 all(matches + diag(n_teams) == 1)
 
-# tabulate wins per team
-team_wins <- soccer |>
+wins_per_team <- soccer |>
   # remove ties
   filter(HS != AS) |>
-  # compute winning team
-  mutate(team = ifelse(HS > AS, HomeTeam, AwayTeam)) |>
+  mutate(
+    team = ifelse(HS > AS, HomeTeam, AwayTeam)
+  ) |>
   count(team, name = "win")
 
-# tabulate losses per team
-team_losses <- soccer |>
+losses_per_team <- soccer |>
   # remove ties
   filter(HS != AS) |>
-  # compute losing team
-  mutate(team = ifelse(HS < AS, HomeTeam, AwayTeam)) |>
+  mutate(
+    team = ifelse(HS < AS, HomeTeam, AwayTeam)
+  ) |>
   count(team, name = "loss")
 
 # compute percent of wins, losses, and ties by team
-team_stats <- team_wins |>
-  full_join(team_losses) |>
+team_stats <- wins_per_team |>
+  full_join(losses_per_team) |>
   replace_na(list(loss = 0)) |>
-  mutate(team = fct_reorder(team, win)) |>
-  # compute ties using win + loss + tie = 38
-  mutate(tie = 38 - win - loss) |>
+  mutate(
+    team = fct_reorder(team, win),
+    # compute ties using win + loss + tie = 38
+    tie = 38 - win - loss
+  ) |>
   pivot_longer(
     cols = c(win, loss, tie),
-    names_to = "outcome", values_to = "n"
+    names_to = "outcome",
+    values_to = "n"
   )
 
 # plot percentage of wins, losses, and ties by team
