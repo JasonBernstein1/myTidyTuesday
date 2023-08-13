@@ -49,7 +49,7 @@ hot_ones <- sauces |>
       Max ~ max(.)
     ),
     fmt = list(~ fmt_number(.,
-      drop_trailing_zeros = T
+      drop_trailing_zeros = TRUE
     ))
   ) |>
   tab_spanner(
