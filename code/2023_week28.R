@@ -13,16 +13,28 @@ sh_temps <- tuesdata$sh_temps
 # wrangle data for plot
 df <- nh_temps |>
   bind_rows(sh_temps) |>
-  mutate(hemisphere = rep(c("Northern", "Southern"),
-                          c(nrow(nh_temps), nrow(sh_temps)))) |>
+  mutate(
+    hemisphere = rep(
+      c("Northern", "Southern"),
+      c(nrow(nh_temps), nrow(sh_temps))
+    )
+  ) |>
   # go from Jan, Feb, ..., Dec columns to single month column
-  pivot_longer(cols = tidyselect::matches(match = "[A-Z][a-z][a-z]\\b",
-                                          ignore.case = FALSE),
-               names_to = "month", values_to = "temp") |>
-  mutate(date = lubridate::ymd(paste(Year, month, "01"))) |>
+  pivot_longer(
+    cols = tidyselect::matches(
+      match = "[A-Z][a-z][a-z]\\b",
+      ignore.case = FALSE
+    ),
+    names_to = "month", values_to = "temp"
+  ) |>
+  mutate(
+    date = lubridate::ymd(paste(Year, month, "01"))
+  ) |>
   # smooth temperature data for each hemisphere with a moving average
   group_by(hemisphere) %>%
-  mutate(temp_smoothed = stats::filter(temp, rep(1 / 24, 24), sides = 2)) |>
+  mutate(
+    temp_smoothed = stats::filter(temp, rep(1 / 24, 24), sides = 2)
+  ) |>
   ungroup() |>
   # remove records with missing temp, June 2023 - Dec. 2023
   filter(!is.na(temp)) |>
@@ -67,8 +79,10 @@ df |>
   ) +
   geom_label(
     data = maxmin_temp,
-    aes(x = date_posn, y = temp,
-        label = glue::glue("{date_label}: {temp} {'\u00B0'}C")),
+    aes(
+      x = date_posn, y = temp,
+      label = glue::glue("{date_label}: {temp} {'\u00B0'}C")
+    ),
     fill = "lightgoldenrodyellow"
   ) +
   labs(
@@ -89,5 +103,7 @@ df |>
     plot.margin = margin(0.3, 0.3, 0.2, 0.3, "cm")
   )
 
-ggsave(filename = "./images/2023_week28.png",
-       height = 7, width = 9)
+ggsave(
+  filename = "./images/2023_week28.png",
+  height = 7, width = 9
+)

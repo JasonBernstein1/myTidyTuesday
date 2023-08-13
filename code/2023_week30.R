@@ -15,7 +15,9 @@ df <- tuesdata$scurvy |>
   rename_with(~ stringr::str_remove_all(.x, pattern = "_d6|_the")) |>
   rename_with(~ stringr::str_replace_all(.x, pattern = "_", replacement = " ")) |>
   # remove numbers before symptom severities in table
-  mutate(across(everything(), ~ stringr::str_remove(.x, "\\d_")))
+  mutate(
+    across(everything(), ~ stringr::str_remove(.x, "\\d_"))
+  )
 
 scurvy_table <- df |>
   gt() |>

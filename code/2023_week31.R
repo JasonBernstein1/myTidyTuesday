@@ -11,10 +11,13 @@ df <- tuesdata$states |>
     popn_density = population_2020 / total_area_mi2,
     state = tolower(state),
     decile = cut(popn_density,
-                 breaks = quantile(popn_density, seq(0, 1, by = 0.1)),
-                 labels = paste0(seq(0, 90, by = 10), "-",
-                                 seq(10, 100, by = 10), "%"),
-                          include.lowest = TRUE)
+      breaks = quantile(popn_density, seq(0, 1, by = 0.1)),
+      labels = paste0(
+        seq(0, 90, by = 10), "-",
+        seq(10, 100, by = 10), "%"
+      ),
+      include.lowest = TRUE
+    )
   ) |>
   select(state, postal_abbreviation, popn_density, decile)
 
@@ -28,7 +31,9 @@ us_map <- tigris::states(class = "sf", cb = TRUE) |>
   tigris::shift_geometry() |>
   # keep US states, remove US territories
   filter(GEOID < 60) |>
-  mutate(NAME = tolower(NAME)) |>
+  mutate(
+    NAME = tolower(NAME)
+  ) |>
   left_join(df, by = c("NAME" = "state"))
 
 highest_popn_density_states <- df |>
@@ -49,8 +54,10 @@ us_map |>
   labs(
     fill = "Population\nDensity",
     title = "Population Density by State in 2020",
-    subtitle = glue::glue("Highest: {highest_popn_density_states}; ",
-                          "Lowest: {lowest_popn_density_states}"),
+    subtitle = glue::glue(
+      "Highest: {highest_popn_density_states}; ",
+      "Lowest: {lowest_popn_density_states}"
+    ),
     caption = "TidyTuesday: 2023, week 31 | Source: Wikipedia"
   ) +
   guides(fill = guide_legend(reverse = TRUE)) +
@@ -69,5 +76,7 @@ us_map |>
     plot.title = element_text(color = gray, size = 22)
   )
 
-ggsave(filename = "./images/2023_week31.png",
-       height = 6, width = 10)
+ggsave(
+  filename = "./images/2023_week31.png",
+  height = 6, width = 10
+)

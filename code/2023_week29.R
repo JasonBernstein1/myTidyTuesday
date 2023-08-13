@@ -14,7 +14,8 @@ df <- tuesdata$detectors |>
   ) |>
   mutate(
     prompt_engineered = ifelse(str_detect(name, "PE|Prompt Engineered"),
-                               "Yes", "No"),
+      "Yes", "No"
+    ),
     name = str_remove(name, " Prompt Engineered|. PE")
   ) |>
   arrange(desc(accuracy))
@@ -26,8 +27,10 @@ gpt_table <- df |>
   tab_style(
     style = list(
       cell_fill(color = "coral2", alpha = 0.3),
-      cell_borders(sides = "all", color = "black",
-                   style = "solid", weight = px(2.5)),
+      cell_borders(
+        sides = "all", color = "black",
+        style = "solid", weight = px(2.5)
+      ),
       cell_text(weight = "bold")
     ),
     locations = cells_row_groups(groups = 1:3)
@@ -36,8 +39,10 @@ gpt_table <- df |>
   tab_style(
     style = list(
       cell_fill(color = "coral", alpha = 0.05),
-      cell_borders(sides = "all", color = "black",
-                   style = "solid", weight = px(2))
+      cell_borders(
+        sides = "all", color = "black",
+        style = "solid", weight = px(2)
+      )
     ),
     locations = cells_body()
   ) |>
