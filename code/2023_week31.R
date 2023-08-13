@@ -47,11 +47,11 @@ us_map |>
   coord_sf(crs = 5070, expand = T) +
   scale_fill_manual(values = fill_colors, na.translate = F) +
   labs(
-    fill = 'Population\nDensity',
-    title = 'Population Density by State in 2020',
-    subtitle = glue::glue('Highest: {highest_popn_density_states}; ',
-                          'Lowest: {lowest_popn_density_states}'),
-    caption = 'TidyTuesday: 2023, week 31 | Source: Wikipedia'
+    fill = "Population\nDensity",
+    title = "Population Density by State in 2020",
+    subtitle = glue::glue("Highest: {highest_popn_density_states}; ",
+                          "Lowest: {lowest_popn_density_states}"),
+    caption = "TidyTuesday: 2023, week 31 | Source: Wikipedia"
   ) +
   guides(fill = guide_legend(reverse = TRUE)) +
   theme_dark() +
@@ -69,5 +69,5 @@ us_map |>
     plot.title = element_text(color = gray, size = 22)
   )
 
-ggsave(filename = './images/2023_week31.png',
+ggsave(filename = "./images/2023_week31.png",
        height = 6, width = 10)

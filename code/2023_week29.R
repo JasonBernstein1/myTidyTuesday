@@ -13,16 +13,16 @@ df <- tuesdata$detectors |>
     .by = c(model, name)
   ) |>
   mutate(
-    prompt_engineered = ifelse(str_detect(name, 'PE|Prompt Engineered'),
-                               'Yes', 'No'),
-    name = str_remove(name, ' Prompt Engineered|. PE')
+    prompt_engineered = ifelse(str_detect(name, "PE|Prompt Engineered"),
+                               "Yes", "No"),
+    name = str_remove(name, " Prompt Engineered|. PE")
   ) |>
   arrange(desc(accuracy))
 
 gpt_table <- df |>
   group_by(model) |>
   gt() |>
-  fmt_number(decimals = 2, columns = 'accuracy') |>
+  fmt_number(decimals = 2, columns = "accuracy") |>
   tab_style(
     style = list(
       cell_fill(color = "coral2", alpha = 0.3),
@@ -43,7 +43,7 @@ gpt_table <- df |>
   ) |>
   cols_align(
     align = "center",
-    columns = c('accuracy', 'sample_size', 'prompt_engineered')
+    columns = c("accuracy", "sample_size", "prompt_engineered")
   ) |>
   cols_label(
     prompt_engineered = "**Prompt<br>Engineered**",
@@ -52,18 +52,18 @@ gpt_table <- df |>
     sample_size = "**Sample<br>Size**",
     .fn = md
   ) |>
-  tab_source_note('TidyTuesday: 2023, week 29 | Source: Liang et al. (2023), arXiv:2304.02819') |>
+  tab_source_note("TidyTuesday: 2023, week 29 | Source: Liang et al. (2023), arXiv:2304.02819") |>
   tab_options(
     heading.background.color = "coral4",
     heading.title.font.size = 24,
-    heading.border.bottom.color = 'black',
+    heading.border.bottom.color = "black",
     heading.padding = "9px",
-    table_body.border.bottom.color = 'black',
-    table.border.bottom.color = 'black',
-    table.border.top.color = 'black',
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "black",
+    table.border.top.color = "black",
     table.border.bottom.width = "2.5px"
   )
 
 gpt_table
 
-gtsave(gpt_table, filename = './images/2023_week29.png')
+gtsave(gpt_table, filename = "./images/2023_week29.png")

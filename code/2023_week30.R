@@ -24,7 +24,7 @@ scurvy_table <- df |>
     columns = 2:5,
     fn = scales::col_factor(
       palette = colorRampPalette(RColorBrewer::brewer.pal(4, "Blues"))(4),
-      levels = c('none', 'mild', 'moderate', 'severe')
+      levels = c("none", "mild", "moderate", "severe")
     )
   ) |>
   tab_style(
@@ -51,24 +51,24 @@ scurvy_table <- df |>
   # indicate fitness for duty, or not, in green or red text, respectively
   tab_style_body(
     fn = function(x) x == "yes",
-    style = cell_text(color = 'darkgreen', weight = 'bold'),
+    style = cell_text(color = "darkgreen", weight = "bold"),
     columns = `fit for duty`
   ) |>
   tab_style_body(
     fn = function(x) x == "no",
-    style = cell_text(color = 'tomato', weight = 'bold'),
+    style = cell_text(color = "tomato", weight = "bold"),
     columns = `fit for duty`
   ) |>
   opt_row_striping(row_striping = TRUE) |>
-  tab_source_note('TidyTuesday: 2023, week 30 | Source: medicaldata R Package (P. Higgins)') |>
+  tab_source_note("TidyTuesday: 2023, week 30 | Source: medicaldata R Package (P. Higgins)") |>
   tab_options(
-    column_labels.background.color = 'white',
+    column_labels.background.color = "white",
     heading.title.font.size = 22,
-    heading.background.color = 'aliceblue',
+    heading.background.color = "aliceblue",
     heading.subtitle.font.size = 18,
-    row.striping.background_color = 'grey93',
+    row.striping.background_color = "grey93",
   )
 
 scurvy_table
 
-gtsave(scurvy_table, filename = './images/2023_week30.png')
+gtsave(scurvy_table, filename = "./images/2023_week30.png")
