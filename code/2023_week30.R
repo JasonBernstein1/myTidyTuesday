@@ -64,7 +64,6 @@ scurvy_table <- df |>
   opt_row_striping(row_striping = TRUE) |>
   tab_source_note("TidyTuesday: 2023, week 30 | Source: medicaldata R Package (P. Higgins)") |>
   tab_options(
-    column_labels.background.color = "white",
     heading.title.font.size = 22,
     heading.background.color = "aliceblue",
     heading.subtitle.font.size = 18,
