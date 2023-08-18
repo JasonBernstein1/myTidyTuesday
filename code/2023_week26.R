@@ -98,6 +98,6 @@ cowplot::ggdraw(base_bar_plot) +
   cowplot::draw_plot(hawaii_map, x = 0.85, y = 0.09, width = 0.07, height = 0.05)
 
 ggsave(
-  filename = "./images/2023_week26.png",
+  filename = "images/2023_week26.png",
   height = 8, width = 10
 )

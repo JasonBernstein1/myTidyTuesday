@@ -77,6 +77,6 @@ us_map |>
   )
 
 ggsave(
-  filename = "./images/2023_week31.png",
+  filename = "images/2023_week31.png",
   height = 6, width = 10
 )

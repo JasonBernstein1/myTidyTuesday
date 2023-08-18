@@ -108,6 +108,6 @@ sightings_map |>
   )
 
 ggsave(
-  filename = "./images/2023_week25.png",
+  filename = "images/2023_week25.png",
   height = 4, width = 7
 )

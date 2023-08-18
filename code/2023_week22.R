@@ -73,6 +73,6 @@ df |>
   )
 
 ggsave(
-  filename = "./images/2023_week22.png",
+  filename = "images/2023_week22.png",
   height = 8, width = 8
 )

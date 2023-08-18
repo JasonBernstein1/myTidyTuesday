@@ -56,6 +56,6 @@ base_map +
   )
 
 ggsave(
-  filename = "./images/2023_week16.png",
+  filename = "images/2023_week16.png",
   height = 6, width = 8
 )

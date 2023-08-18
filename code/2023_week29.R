@@ -71,4 +71,4 @@ gpt_table <- df |>
 
 gpt_table
 
-gtsave(gpt_table, filename = "./images/2023_week29.png")
+gtsave(gpt_table, filename = "images/2023_week29.png")

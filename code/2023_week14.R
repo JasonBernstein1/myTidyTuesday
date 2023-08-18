@@ -90,6 +90,6 @@ team_stats |>
   )
 
 ggsave(
-  filename = "./images/2023_week14.png",
+  filename = "images/2023_week14.png",
   height = 9, width = 9
 )

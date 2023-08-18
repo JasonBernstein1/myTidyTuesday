@@ -164,6 +164,6 @@ p_map + p_hist +
   )
 
 ggsave(
-  filename = "./images/2023_week21.png",
+  filename = "images/2023_week21.png",
   height = 8, width = 11
 )
