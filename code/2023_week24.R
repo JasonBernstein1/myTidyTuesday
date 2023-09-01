@@ -31,8 +31,7 @@ df <- tuesdata$safi_data |>
 start_date <- min(tuesdata$safi_data$interview_date)
 end_date <- max(tuesdata$safi_data$interview_date)
 
-# colors for the three different villages
-colors <- hcl.colors(n = 3, palette = "Dark 2")
+village_colors <- hcl.colors(n = 3, palette = "Dark 2")
 
 # create table
 item_counts <- df |>
@@ -48,7 +47,7 @@ item_counts <- df |>
   # color items Chirodzo has the most of
   tab_style(
     style = list(
-      cell_fill(color = colors[1], alpha = 0.25),
+      cell_fill(color = village_colors[1], alpha = 0.25),
       cell_text(weight = "bold")
     ),
     locations = cells_body(
@@ -59,7 +58,7 @@ item_counts <- df |>
   # color items God has the most of
   tab_style(
     style = list(
-      cell_fill(color = colors[2], alpha = 0.25),
+      cell_fill(color = village_colors[2], alpha = 0.25),
       cell_text(weight = "bold")
     ),
     locations = cells_body(
@@ -70,7 +69,7 @@ item_counts <- df |>
   # color items Ruaca has the most of
   tab_style(
     style = list(
-      cell_fill(color = colors[3], alpha = 0.25),
+      cell_fill(color = village_colors[3], alpha = 0.25),
       cell_text(weight = "bold")
     ),
     locations = cells_body(
