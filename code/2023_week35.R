@@ -50,9 +50,10 @@ gt_plt_bar_stack2 <- capture.output(gtExtras::gt_plt_bar_stack) |>
   str_remove("<bytecode.*") |>
   str_remove("<environment: namespace:gtExtras>") |>
   # convert text of modified function back to function
-  (\(.x) {eval(parse(text = .x))})()
-
-environment(gt_plt_bar_stack2) <- environment(gtExtras::gt_plt_bar_stack)
+  (\(.x) {
+    parse(text = .x)
+  })() |>
+  eval(envir = environment(gtExtras::gt_plt_bar_stack))
 
 tab <- df |>
   group_by(decade) |>
