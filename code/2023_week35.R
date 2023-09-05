@@ -57,12 +57,12 @@ environment(gt_plt_bar_stack2) <- environment(gtExtras::gt_plt_bar_stack)
 tab <- df |>
   group_by(decade) |>
   summarise(
-    list_data = list(n),
+    outcomes = list(n),
     total = sum(n, na.rm = TRUE)
   ) |>
   gt() |>
   gt_plt_bar_stack2(
-    column = list_data,
+    column = outcomes,
     labels = unique(df$outcome),
     palette = thematic::okabe_ito(3),
     width = 120
