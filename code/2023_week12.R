@@ -57,7 +57,7 @@ df |>
   geom_col(aes(fill = type), width = 0.75) +
   geom_label(
     aes(label = title, fill = type),
-    size = 2.5, label.size = 0.05, show.legend = FALSE
+    size = 3.5, label.size = 0.05, show.legend = FALSE
   ) +
   scale_y_log10(limits = c(0.01, 100)) +
   coord_flip() +
