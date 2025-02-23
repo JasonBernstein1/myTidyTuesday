@@ -52,7 +52,8 @@ episodes |>
   scale_y_continuous(labels = ~ scales::comma(.x / 1000)) +
   labs(
     title = "Highest and Lowest Viewed Simpsons Episodes Over Time",
-    y = "Views (Thousands)"
+    y = "Views (Thousands)",
+    caption = "TidyTuesday: 2025, week 5 | Source: Simpsons Dataset from Kaggle."
   )
 
 ggsave(
