@@ -48,9 +48,7 @@ hot_ones <- sauces |>
       Mean ~ mean(.),
       Max ~ max(.)
     ),
-    fmt = list(~ fmt_number(.,
-      drop_trailing_zeros = TRUE
-    ))
+    fmt = list(~ fmt_number(., drop_trailing_zeros = TRUE))
   ) |>
   tab_spanner(
     label = "Sauce Number",
@@ -73,9 +71,15 @@ hot_ones <- sauces |>
   ) |>
   fmt_number(drop_trailing_zeros = TRUE) |>
   fmt_number(columns = c(mean, median), n_sigfig = 3) |>
-  tab_header(title = md(paste(emojis1, "**Hot Sauce Heat Trends**", emojis2))) |>
-  tab_footnote("Units are kiloscovilles, where 1 kiloscoville = 1,000 scoville.") |>
-  tab_source_note("TidyTuesday: 2023, week 32 | Source: Wikipedia and Carl Börstell") |>
+  tab_header(
+    title = md(paste(emojis1, "**Hot Sauce Heat Trends**", emojis2))
+  ) |>
+  tab_footnote(
+    "Units are kiloscovilles, where 1 kiloscoville = 1,000 scoville."
+  ) |>
+  tab_source_note(
+    "TidyTuesday: 2023, week 32 | Source: Wikipedia and Carl Börstell"
+  ) |>
   opt_row_striping(row_striping = TRUE) |>
   tab_options(
     data_row.padding = px(4),

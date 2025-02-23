@@ -21,13 +21,16 @@ df <- tuesdata$founder_crops |>
 map_boundaries <- with(
   df,
   c(
-    0.99 * min(longitude), 0.99 * min(latitude),
-    1.01 * max(longitude), 1.01 * max(latitude)
+    0.99 * min(longitude),
+    0.99 * min(latitude),
+    1.01 * max(longitude),
+    1.01 * max(latitude)
   )
 )
 
 base_map <- ggmap::ggmap(get_stamenmap(
-  bbox = map_boundaries, zoom = 7,
+  bbox = map_boundaries,
+  zoom = 7,
   maptype = "terrain"
 ))
 
@@ -36,7 +39,9 @@ base_map +
   geom_point(
     data = df,
     aes(x = longitude, y = latitude, fill = category),
-    shape = 21, alpha = 0.7, size = 3
+    shape = 21,
+    alpha = 0.7,
+    size = 3
   ) +
   scale_fill_brewer(palette = "Dark2") +
   facet_wrap(~facet_label, strip.position = "bottom") +
@@ -57,5 +62,6 @@ base_map +
 
 ggsave(
   filename = "images/2023_week16.png",
-  height = 6, width = 8
+  height = 6,
+  width = 8
 )

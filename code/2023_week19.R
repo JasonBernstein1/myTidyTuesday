@@ -51,12 +51,24 @@ top_counties <- df |>
 
 # positions of county labels on map
 label_coords <- tribble(
-  ~county_name, ~lon, ~lat,
-  "Washtenaw", -83.2, 42.25, # Ann Arbor
-  "Oakland",   -82.9, 42.68, # Detroit suburbs
-  "Leelanau",  -86.4, 45.1,  # Traverse City
-  "Kent",      -85.2, 43.0,  # Grand Rapids
-  "Emmet",     -85.5, 45.6   # Petoskey
+  ~county_name,
+  ~lon,
+  ~lat,
+  "Washtenaw",
+  -83.2,
+  42.25, # Ann Arbor
+  "Oakland",
+  -82.9,
+  42.68, # Detroit suburbs
+  "Leelanau",
+  -86.4,
+  45.1, # Traverse City
+  "Kent",
+  -85.2,
+  43.0, # Grand Rapids
+  "Emmet",
+  -85.5,
+  45.6 # Petoskey
 )
 
 # combine map and cost estimate data
@@ -77,12 +89,17 @@ county_cost_est |>
     limits = c(100, 400)
   ) +
   geom_label(
-    data = label_coords, aes(x = lon, y = lat, label = county_name),
+    data = label_coords,
+    aes(x = lon, y = lat, label = county_name),
     size = 6
   ) +
   annotate(
-    geom = "table", x = -90, y = 43.25, label = list(top_counties),
-    size = 6, fontface = "bold"
+    geom = "table",
+    x = -90,
+    y = 43.25,
+    label = list(top_counties),
+    size = 6,
+    fontface = "bold"
   ) +
   theme(
     axis.text = element_blank(),
@@ -105,5 +122,6 @@ county_cost_est |>
 
 ggsave(
   filename = "images/2023_week19.png",
-  height = 12, width = 10
+  height = 12,
+  width = 10
 )

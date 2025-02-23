@@ -88,7 +88,8 @@ graph |>
   ggraph::ggraph(layout = "grid") +
   ggraph::geom_edge_arc(
     aes(color = edge_id),
-    strength = 0.1, edge_width = 1.2
+    strength = 0.1,
+    edge_width = 1.2
   ) +
   ggraph::scale_edge_color_manual(
     values = setNames(
@@ -99,7 +100,9 @@ graph |>
   ) +
   ggraph::geom_node_label(
     aes(label = name),
-    size = 6, fill = "white", label.padding = unit(0.4, "lines"),
+    size = 6,
+    fill = "white",
+    label.padding = unit(0.4, "lines"),
     label.size = 0.4
   ) +
   coord_cartesian(xlim = c(-0.2, 2.2), ylim = c(2.1, -0.1)) +
@@ -119,5 +122,6 @@ graph |>
 
 ggsave(
   filename = "images/2023_week38.png",
-  height = 8, width = 8
+  height = 8,
+  width = 8
 )

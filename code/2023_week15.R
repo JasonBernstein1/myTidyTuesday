@@ -60,7 +60,8 @@ df |>
   # add vertical lines at Feb. 28 since noticeable dips here
   geom_vline(
     xintercept = as.Date(paste0(2017:2021, "-02-28")),
-    linetype = "dashed", alpha = 0.6
+    linetype = "dashed",
+    alpha = 0.6
   ) +
   scale_x_continuous(
     breaks = as.Date(paste0(2017:2021, "-02-28")),
@@ -99,5 +100,6 @@ df |>
 
 ggsave(
   filename = "images/2023_week15.png",
-  height = 10, width = 15
+  height = 10,
+  width = 15
 )

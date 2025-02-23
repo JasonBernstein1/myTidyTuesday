@@ -62,7 +62,8 @@ team_stats |>
   geom_col(alpha = 0.75, width = 0.8, position = "fill") +
   geom_vline(
     xintercept = seq(0.25, 0.75, by = 0.25),
-    alpha = 0.4, linetype = "dashed"
+    alpha = 0.4,
+    linetype = "dashed"
   ) +
   scale_x_continuous(labels = scales::percent) +
   scale_fill_manual(
@@ -91,5 +92,6 @@ team_stats |>
 
 ggsave(
   filename = "images/2023_week14.png",
-  height = 9, width = 9
+  height = 9,
+  width = 9
 )

@@ -66,7 +66,8 @@ sightings_map |>
   ggplot() +
   geom_polygon(
     aes(x = long, y = lat, fill = is_above_average, group = group),
-    color = "white", linewidth = 0.15
+    color = "white",
+    linewidth = 0.15
   ) +
   coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
   scale_fill_manual(values = c("lightgray", "steelblue")) +
@@ -74,7 +75,8 @@ sightings_map |>
   shadowtext::geom_shadowtext(
     data = state_centers,
     aes(x = long, y = lat, label = state_abbreviation),
-    size = 3.5, col = "white"
+    size = 3.5,
+    col = "white"
   ) +
   emoGG::geom_emoji(
     data = emoji_map,
@@ -82,19 +84,29 @@ sightings_map |>
     emoji = "1f6f8"
   ) +
   annotate(
-    geom = "text", x = -118, y = 26.5, size = 4,
+    geom = "text",
+    x = -118,
+    y = 26.5,
+    size = 4,
     label = glue::glue(
       "Average number of\n sightings by state:",
       "{round(mean(df$n))}"
     )
   ) +
   annotate(
-    geom = "table", x = -64, y = 22, label = list(top_states),
-    size = 3, fontface = "bold", table.theme = ttheme_gtminimal
+    geom = "table",
+    x = -64,
+    y = 22,
+    label = list(top_states),
+    size = 3,
+    fontface = "bold",
+    table.theme = ttheme_gtminimal
   ) +
   labs(
     title = "UFO Sightings in 18 States Exceed the National Average",
-    subtitle = glue::glue("Data collected from {range_dates[1]} to {range_dates[2]}"),
+    subtitle = glue::glue(
+      "Data collected from {range_dates[1]} to {range_dates[2]}"
+    ),
     caption = "TidyTuesday: 2023, week 25 | Source: National UFO Reporting Center"
   ) +
   theme_void() +
@@ -109,5 +121,6 @@ sightings_map |>
 
 ggsave(
   filename = "images/2023_week25.png",
-  height = 4, width = 7
+  height = 4,
+  width = 7
 )

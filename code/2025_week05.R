@@ -21,7 +21,11 @@ episodes |>
       y = views +
         if_else(stringr::str_detect(title, c("Brick")), -2200, 0) +
         if_else(stringr::str_detect(title, c("XXV")), 100, 0),
-      label = stringr::str_replace(title, "Treehouse of Horror .*", "Treehouse of Horror")
+      label = stringr::str_replace(
+        title,
+        "Treehouse of Horror .*",
+        "Treehouse of Horror"
+      )
     ),
     vjust = -0.5,
     hjust = 0.5,
@@ -53,5 +57,6 @@ episodes |>
 
 ggsave(
   filename = "images/2025_week05.png",
-  height = 9, width = 9
+  height = 9,
+  width = 9
 )

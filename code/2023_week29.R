@@ -13,8 +13,10 @@ df <- tuesdata$detectors |>
     .by = c(model, name)
   ) |>
   mutate(
-    prompt_engineered = ifelse(str_detect(name, "PE|Prompt Engineered"),
-      "Yes", "No"
+    prompt_engineered = ifelse(
+      str_detect(name, "PE|Prompt Engineered"),
+      "Yes",
+      "No"
     ),
     name = str_remove(name, " Prompt Engineered|. PE")
   ) |>
@@ -28,8 +30,10 @@ gpt_table <- df |>
     style = list(
       cell_fill(color = "coral2", alpha = 0.3),
       cell_borders(
-        sides = "all", color = "black",
-        style = "solid", weight = px(2.5)
+        sides = "all",
+        color = "black",
+        style = "solid",
+        weight = px(2.5)
       ),
       cell_text(weight = "bold")
     ),
@@ -40,8 +44,10 @@ gpt_table <- df |>
     style = list(
       cell_fill(color = "coral", alpha = 0.05),
       cell_borders(
-        sides = "all", color = "black",
-        style = "solid", weight = px(2)
+        sides = "all",
+        color = "black",
+        style = "solid",
+        weight = px(2)
       )
     ),
     locations = cells_body()
@@ -57,7 +63,9 @@ gpt_table <- df |>
     sample_size = "**Sample<br>Size**",
     .fn = md
   ) |>
-  tab_source_note("TidyTuesday: 2023, week 29 | Source: Liang et al. (2023), arXiv:2304.02819") |>
+  tab_source_note(
+    "TidyTuesday: 2023, week 29 | Source: Liang et al. (2023), arXiv:2304.02819"
+  ) |>
   tab_options(
     heading.background.color = "coral4",
     heading.title.font.size = 24,

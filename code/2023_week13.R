@@ -57,7 +57,8 @@ country_map |>
   geom_sf(
     data = dst_status_sf,
     aes(color = dst_active, shape = dst_active),
-    alpha = 0.95, size = 5
+    alpha = 0.95,
+    size = 5
   ) +
   scale_color_manual(
     name = "DST",
@@ -93,5 +94,6 @@ country_map |>
 
 ggsave(
   filename = "images/2023_week13.png",
-  height = 5.3, width = 9
+  height = 5.3,
+  width = 9
 )

@@ -46,10 +46,13 @@ us_contiguous_map <- map_data("state") |>
   ggplot() +
   geom_polygon(
     aes(
-      x = long, y = lat, group = group,
+      x = long,
+      y = lat,
+      group = group,
       fill = region %in% tolower(top_ten_states)
     ),
-    color = bg_col, linewidth = 0.2
+    color = bg_col,
+    linewidth = 0.2
   ) +
   coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
   scale_fill_manual(values = c("white", fill_col)) +
@@ -66,7 +69,10 @@ base_bar_plot <- df |>
       label = after_stat(count),
       x = after_stat(count) + 15 * (after_stat(count) < 1000) - 80
     ),
-    vjust = 0.5, col = bg_col, size = 8, family = font
+    vjust = 0.5,
+    col = bg_col,
+    size = 8,
+    family = font
   ) +
   labs(
     x = element_blank(),
@@ -78,7 +84,9 @@ base_bar_plot <- df |>
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_text(
-      size = 22, hjust = 1, color = "white",
+      size = 22,
+      hjust = 1,
+      color = "white",
       family = font
     ),
     panel.grid = element_blank(),
@@ -86,18 +94,39 @@ base_bar_plot <- df |>
     plot.caption = element_text(color = "white", family = font),
     plot.margin = margin(t = 0.5, r = 0.5, b = 0.25, l = 0.5, "cm"),
     plot.title = element_text(
-      hjust = 0.16, size = 26, color = "white",
+      hjust = 0.16,
+      size = 26,
+      color = "white",
       family = font
     )
   )
 
 # combine bar plot with maps of contiguous US, Alaska, and Hawaii
 cowplot::ggdraw(base_bar_plot) +
-  cowplot::draw_plot(us_contiguous_map, x = 0.625, y = 0.05, width = 0.4, height = 0.4) +
-  cowplot::draw_plot(alaska_map, x = 0.65, y = 0.03, width = 0.15, height = 0.15) +
-  cowplot::draw_plot(hawaii_map, x = 0.85, y = 0.09, width = 0.07, height = 0.05)
+  cowplot::draw_plot(
+    us_contiguous_map,
+    x = 0.625,
+    y = 0.05,
+    width = 0.4,
+    height = 0.4
+  ) +
+  cowplot::draw_plot(
+    alaska_map,
+    x = 0.65,
+    y = 0.03,
+    width = 0.15,
+    height = 0.15
+  ) +
+  cowplot::draw_plot(
+    hawaii_map,
+    x = 0.85,
+    y = 0.09,
+    width = 0.07,
+    height = 0.05
+  )
 
 ggsave(
   filename = "images/2023_week26.png",
-  height = 8, width = 10
+  height = 8,
+  width = 10
 )

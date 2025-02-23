@@ -13,7 +13,9 @@ df <- tuesdata$scurvy |>
   rename(subject = study_id) |>
   # format column names
   rename_with(~ stringr::str_remove_all(.x, pattern = "_d6|_the")) |>
-  rename_with(~ stringr::str_replace_all(.x, pattern = "_", replacement = " ")) |>
+  rename_with(
+    ~ stringr::str_replace_all(.x, pattern = "_", replacement = " ")
+  ) |>
   # remove numbers before symptom severities in table
   mutate(
     across(everything(), ~ stringr::str_remove(.x, "\\d_"))
@@ -62,7 +64,9 @@ scurvy_table <- df |>
     columns = `fit for duty`
   ) |>
   opt_row_striping(row_striping = TRUE) |>
-  tab_source_note("TidyTuesday: 2023, week 30 | Source: medicaldata R Package (P. Higgins)") |>
+  tab_source_note(
+    "TidyTuesday: 2023, week 30 | Source: medicaldata R Package (P. Higgins)"
+  ) |>
   tab_options(
     heading.title.font.size = 22,
     heading.background.color = "aliceblue",
@@ -73,4 +77,3 @@ scurvy_table <- df |>
 scurvy_table
 
 gtsave(scurvy_table, filename = "images/2023_week30.png")
-

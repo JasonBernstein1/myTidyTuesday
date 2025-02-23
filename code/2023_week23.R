@@ -8,10 +8,22 @@ library(ggtext)
 # countries we consider and whether they are in OPEC or North America
 countries <- tibble(
   country = c(
-    "Algeria", "Angola", "Congo", "Equatorial Guinea",
-    "Gabon", "Iran", "Iraq", "Kuwait", "Libya",
-    "Nigeria", "Saudi Arabia", "United Arab Emirates",
-    "Venezuela", "United States", "Mexico", "Canada"
+    "Algeria",
+    "Angola",
+    "Congo",
+    "Equatorial Guinea",
+    "Gabon",
+    "Iran",
+    "Iraq",
+    "Kuwait",
+    "Libya",
+    "Nigeria",
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Venezuela",
+    "United States",
+    "Mexico",
+    "Canada"
   ),
   region = rep(c("opec", "north_america"), c(13, 3))
 )
@@ -50,8 +62,10 @@ df |>
   ggplot(aes(x = year, y = oil_production)) +
   geom_line(aes(color = region), linewidth = 1.5) +
   scale_color_manual(values = colors) +
-  facet_wrap(~facet_lab,
-    nrow = 4, scales = "free_y",
+  facet_wrap(
+    ~facet_lab,
+    nrow = 4,
+    scales = "free_y",
     strip.position = "bottom"
   ) +
   theme_void() +
@@ -70,14 +84,17 @@ df |>
     plot.background = element_rect(fill = "#FFF6F6"),
     plot.margin = margin(0.1, 0.5, 0.1, 0.5, "cm"),
     plot.title = element_markdown(
-      size = 26, hjust = 0,
+      size = 26,
+      hjust = 0,
       margin = margin(
-        b = 0.5, t = 0.5,
+        b = 0.5,
+        t = 0.5,
         unit = "cm"
       )
     ),
     plot.subtitle = element_text(
-      size = 24, hjust = 0,
+      size = 24,
+      hjust = 0,
       margin = margin(b = 0.5, unit = "cm")
     ),
     strip.text = element_text(size = 18),
@@ -86,5 +103,6 @@ df |>
 
 ggsave(
   filename = "images/2023_week23.png",
-  height = 10, width = 14
+  height = 10,
+  width = 14
 )

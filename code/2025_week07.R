@@ -33,8 +33,10 @@ df |>
   ) +
   # Draw states
   geom_polygon(
-    data = states_map, aes(long, lat, group = group),
-    fill = "snow", color = "black"
+    data = states_map,
+    aes(long, lat, group = group),
+    fill = "snow",
+    color = "black"
   ) +
   # Add agency locations
   geom_point(aes(longitude, latitude), size = 0.2) +
@@ -45,5 +47,6 @@ df |>
 
 ggsave(
   filename = "images/2025_week07.png",
-  height = 10, width = 15
+  height = 10,
+  width = 15
 )

@@ -55,24 +55,33 @@ ggplot() +
   geom_polygon(
     data = map_data("world", region = c("Canada", "Mexico")),
     aes(x = long, y = lat, group = group),
-    fill = "seashell", color = "black", linewidth = 0.2
+    fill = "seashell",
+    color = "black",
+    linewidth = 0.2
   ) +
   geom_polygon(
     data = states_map,
     aes(x = long, y = lat, group = group, fill = has_synagogue),
-    color = "black", linewidth = 0.2
+    color = "black",
+    linewidth = 0.2
   ) +
   scale_fill_manual(values = c("white", "thistle1")) +
   geom_point(
     data = markers,
     aes(x = long, y = lat),
-    shape = 16, size = 1.2, alpha = 1, col = "steelblue"
+    shape = 16,
+    size = 1.2,
+    alpha = 1,
+    col = "steelblue"
   ) +
   ggrepel::geom_label_repel(
     data = map_labels,
     aes(x = long, y = lat, label = id_location),
-    size = 2, fill = "lightyellow", seed = 1,
-    segment.colour = "red", min.segment.length = 0
+    size = 2,
+    fill = "lightyellow",
+    seed = 1,
+    segment.colour = "red",
+    min.segment.length = 0
   ) +
   # orient map so south is 'up'
   coord_cartesian(
@@ -80,20 +89,36 @@ ggplot() +
     ylim = rev(c(21, 52))
   ) +
   annotate(
-    geom = "text", x = -135, y = 23.5, size = 6, hjust = 0, fontface = 2,
+    geom = "text",
+    x = -135,
+    y = 23.5,
+    size = 6,
+    hjust = 0,
+    fontface = 2,
     label = "Locations of Synagogues\nwith Historic Markers \nin the United States"
   ) +
   # add historic marker titles to left and right sides of map
   annotate(
-    geom = "text", x = -135, y = 31.5, label = list(id_titles_west),
-    size = 2.25, hjust = 0
+    geom = "text",
+    x = -135,
+    y = 31.5,
+    label = list(id_titles_west),
+    size = 2.25,
+    hjust = 0
   ) +
   annotate(
-    geom = "text", x = -79.5, y = 25, label = list(id_titles_east),
-    size = 2.25, hjust = 0
+    geom = "text",
+    x = -79.5,
+    y = 25,
+    label = list(id_titles_east),
+    size = 2.25,
+    hjust = 0
   ) +
   annotate(
-    geom = "text", x = -68.5, y = 52.5, size = 1.8,
+    geom = "text",
+    x = -68.5,
+    y = 52.5,
+    size = 1.8,
     label = "TidyTuesday: 2023, week 27 | Source: Historical Marker Database"
   ) +
   theme_void() +
@@ -104,5 +129,6 @@ ggplot() +
 
 ggsave(
   filename = "images/2023_week27.png",
-  height = 5, width = 9
+  height = 5,
+  width = 9
 )

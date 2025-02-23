@@ -46,9 +46,15 @@ format_coef <- function(variable_name, color) {
 # transform predictors using log1p function since values can be zero
 # and span several orders of magnitude
 fitted_model <- glm(
-  y ~ log1p(crl.tot) + log1p(dollar) + log1p(bang) +
-    log1p(money) + log1p(n000) + log1p(make),
-  family = "binomial", data = spam
+  y ~
+    log1p(crl.tot) +
+      log1p(dollar) +
+      log1p(bang) +
+      log1p(money) +
+      log1p(n000) +
+      log1p(make),
+  family = "binomial",
+  data = spam
 )
 
 # wrangle summary of model fit for table

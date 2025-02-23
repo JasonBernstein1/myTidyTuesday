@@ -81,16 +81,18 @@ flag_table <- df |>
     fns = list(
       Total ~ sum(.)
     ),
-    fmt = list(~ fmt_number(.,
-      drop_trailing_zeros = TRUE
-    ))
+    fmt = list(~ fmt_number(., drop_trailing_zeros = TRUE))
   ) |>
   tab_header(
     title = "Countries with the Highest Number of Asylum Seekers",
     subtitle = "Over 20 million asylum seekers from these 15 countries. 2010-2022."
   ) |>
-  tab_footnote(md(glue::glue("{n_unknown_coo} asylum seekers were from unknown countries of origin."))) |>
-  tab_source_note(md("TidyTuesday: 2023, week 34 | Source: {<span style=\"color:darkred\">refugees</span>} R package")) |>
+  tab_footnote(md(glue::glue(
+    "{n_unknown_coo} asylum seekers were from unknown countries of origin."
+  ))) |>
+  tab_source_note(md(
+    "TidyTuesday: 2023, week 34 | Source: {<span style=\"color:darkred\">refugees</span>} R package"
+  )) |>
   opt_table_font(
     font = list(
       gt::google_font(name = "Rubik")

@@ -82,8 +82,12 @@ tab <- df |>
     title = "Rulings on Fair Use in American Copyright Law",
     subtitle = glue::glue("{nrow(findings)} cases available from 1841-2022.")
   ) |>
-  tab_footnote("Groupings have been simplified, some case outcomes are mixed or preliminary.") |>
-  tab_source_note("TidyTuesday: 2023, week 35 | Source: U.S. Copyright Office Fair Use Index")
+  tab_footnote(
+    "Groupings have been simplified, some case outcomes are mixed or preliminary."
+  ) |>
+  tab_source_note(
+    "TidyTuesday: 2023, week 35 | Source: U.S. Copyright Office Fair Use Index"
+  )
 
 tab
 

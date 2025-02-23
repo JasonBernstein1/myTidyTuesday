@@ -71,7 +71,8 @@ df_dists <- df |>
     # distance from start of arrow to projection
     dist_start_to_proj = sqrt(dist_start_to_obs^2 - dist_obs_to_proj^2),
     # standardize distances to be a percentage of the maximum distance
-    dist_percent = 100 * (dist_start_to_proj - min(dist_start_to_proj)) /
+    dist_percent = 100 *
+      (dist_start_to_proj - min(dist_start_to_proj)) /
       diff(range(dist_start_to_proj))
   ) |>
   select(lon, lat, dist_percent, facet_label)
@@ -84,7 +85,8 @@ p_hist <- df_dists |>
   ggplot(aes(x = dist_percent)) +
   geom_histogram(alpha = 0.5, bins = 20, fill = "darkgreen", col = "white") +
   geom_vline(
-    xintercept = seq(0, 100, by = 25), col = "gray",
+    xintercept = seq(0, 100, by = 25),
+    col = "gray",
     linetype = "dashed"
   ) +
   scale_y_continuous(
@@ -111,7 +113,8 @@ p_hist <- df_dists |>
 # create map of central park
 bound_box <- c(-73.985, 40.762, -73.945, 40.802)
 park_map <- ggmap(get_stamenmap(
-  bbox = bound_box, zoom = 16,
+  bbox = bound_box,
+  zoom = 16,
   maptype = "terrain-background"
 ))
 
@@ -126,8 +129,11 @@ arrow_labels <- tibble(
 # add observation locations and arrow along park to map
 p_map <- park_map +
   geom_point(
-    data = df_dists, aes(x = lon, y = lat),
-    shape = 1, size = 2, color = "black"
+    data = df_dists,
+    aes(x = lon, y = lat),
+    shape = 1,
+    size = 2,
+    color = "black"
   ) +
   geom_segment(
     aes(x = lon1, y = lat1, xend = lon2, yend = lat2),
@@ -149,7 +155,8 @@ p_map <- park_map +
   )
 
 # patch histograms and map together
-p_map + p_hist +
+p_map +
+  p_hist +
   plot_layout(widths = c(0.8, 1), ncol = 2) +
   plot_annotation(
     title = "Squirrel Sightings in Central Park",
@@ -165,5 +172,6 @@ p_map + p_hist +
 
 ggsave(
   filename = "images/2023_week21.png",
-  height = 8, width = 11
+  height = 8,
+  width = 11
 )

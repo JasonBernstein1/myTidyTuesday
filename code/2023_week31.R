@@ -10,11 +10,14 @@ df <- tuesdata$states |>
   mutate(
     popn_density = population_2020 / total_area_mi2,
     state = tolower(state),
-    decile = cut(popn_density,
+    decile = cut(
+      popn_density,
       breaks = quantile(popn_density, seq(0, 1, by = 0.1)),
       labels = paste0(
-        seq(0, 90, by = 10), "-",
-        seq(10, 100, by = 10), "%"
+        seq(0, 90, by = 10),
+        "-",
+        seq(10, 100, by = 10),
+        "%"
       ),
       include.lowest = TRUE
     )
@@ -78,5 +81,6 @@ us_map |>
 
 ggsave(
   filename = "images/2023_week31.png",
-  height = 6, width = 10
+  height = 6,
+  width = 10
 )

@@ -32,15 +32,22 @@ colors <- c(male = "#0072B2", female = "#CC79A7")
 df |>
   ggplot(aes(x = age, fill = gender)) +
   geom_histogram(
-    breaks = seq(110.5, 123, by = 0.5), color = "black",
-    alpha = 0.5, position = "identity"
+    breaks = seq(110.5, 123, by = 0.5),
+    color = "black",
+    alpha = 0.5,
+    position = "identity"
   ) +
   # add labels for three oldest males and females
   geom_label(
-    data = df_six_oldest, color = "black", size = 5, alpha = 0.5,
+    data = df_six_oldest,
+    color = "black",
+    size = 5,
+    alpha = 0.5,
     aes(
-      x = 120, y = seq(32.5, 7.5, by = -5),
-      label = label, fill = gender
+      x = 120,
+      y = seq(32.5, 7.5, by = -5),
+      label = label,
+      fill = gender
     )
   ) +
   scale_fill_manual(values = colors) +
@@ -66,7 +73,8 @@ df |>
     panel.grid.major.x = element_blank(),
     plot.background = element_rect(fill = "white"),
     plot.title = element_markdown(
-      size = 20, hjust = 0.5,
+      size = 20,
+      hjust = 0.5,
       margin = margin(b = 0.25, unit = "cm")
     ),
     plot.title.position = "plot"
@@ -74,5 +82,6 @@ df |>
 
 ggsave(
   filename = "images/2023_week22.png",
-  height = 8, width = 8
+  height = 8,
+  width = 8
 )

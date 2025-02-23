@@ -38,10 +38,9 @@ summary_stats <- df |>
   summarise(
     circular_mean_rad = atan2(mean(sin(angle_rad)), mean(cos(angle_rad))),
     circular_mean_deg = radians_to_degrees(circular_mean_rad),
-    max_hist_count = max(hist(angle_deg,
-      breaks = seq(-180, 180, 10),
-      plot = F
-    )$counts),
+    max_hist_count = max(
+      hist(angle_deg, breaks = seq(-180, 180, 10), plot = F)$counts
+    ),
     mean_text = glue::glue("Mean: {round(circular_mean_deg, 2)}{'\u00B0'}"),
     .by = magnitude_label
   )
@@ -51,11 +50,13 @@ df |>
   # shift angle by 180 degrees so histogram bins are centered in plot
   ggplot(aes(x = (angle_deg + 180) %% 360)) +
   geom_histogram(
-    fill = "maroon", color = "black",
+    fill = "maroon",
+    color = "black",
     breaks = seq(0, 360, 10)
   ) +
   geom_vline(
-    xintercept = seq(0, 360, 90), col = "black",
+    xintercept = seq(0, 360, 90),
+    col = "black",
     linetype = "dashed"
   ) +
   # note, 0 -> W, 90 -> S, 180 -> E, 270 -> N, since shifted angle by 180
@@ -91,5 +92,6 @@ df |>
 
 ggsave(
   filename = "images/2023_week20.png",
-  height = 11, width = 8
+  height = 11,
+  width = 8
 )
