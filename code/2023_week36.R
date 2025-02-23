@@ -92,4 +92,4 @@ wage_table <- df |>
 
 wage_table
 
-gtsave(wage_table, filename = "images/2023_week36.png")
+gtsave(wage_table, filename = here::here("images", "2023_week36.png"))

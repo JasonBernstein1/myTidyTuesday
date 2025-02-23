@@ -121,7 +121,7 @@ county_cost_est |>
   )
 
 ggsave(
-  filename = "images/2023_week19.png",
+  filename = here::here("images", "2023_week19.png"),
   height = 12,
   width = 10
 )

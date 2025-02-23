@@ -91,7 +91,7 @@ df |>
   )
 
 ggsave(
-  filename = "images/2023_week20.png",
+  filename = here::here("images", "2023_week20.png"),
   height = 11,
   width = 8
 )

@@ -126,7 +126,7 @@ cowplot::ggdraw(base_bar_plot) +
   )
 
 ggsave(
-  filename = "images/2023_week26.png",
+  filename = here::here("images", "2023_week26.png"),
   height = 8,
   width = 10
 )

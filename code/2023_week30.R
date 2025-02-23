@@ -76,4 +76,4 @@ scurvy_table <- df |>
 
 scurvy_table
 
-gtsave(scurvy_table, filename = "images/2023_week30.png")
+gtsave(scurvy_table, filename = here::here("images", "2023_week30.png"))

@@ -171,7 +171,7 @@ p_map +
   )
 
 ggsave(
-  filename = "images/2023_week21.png",
+  filename = here::here("images", "2023_week21.png"),
   height = 8,
   width = 11
 )

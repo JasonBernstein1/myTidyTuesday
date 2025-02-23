@@ -94,4 +94,4 @@ hot_ones <- sauces |>
 
 hot_ones
 
-gtsave(hot_ones, filename = "images/2023_week32.png")
+gtsave(hot_ones, filename = here::here("images", "2023_week32.png"))

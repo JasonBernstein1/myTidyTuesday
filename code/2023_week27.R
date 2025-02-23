@@ -128,7 +128,7 @@ ggplot() +
   )
 
 ggsave(
-  filename = "images/2023_week27.png",
+  filename = here::here("images", "2023_week27.png"),
   height = 5,
   width = 9
 )

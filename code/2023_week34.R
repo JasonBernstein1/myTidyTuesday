@@ -107,4 +107,4 @@ flag_table <- df |>
 
 flag_table
 
-gtsave(flag_table, filename = "images/2023_week34.png")
+gtsave(flag_table, filename = here::here("images", "2023_week34.png"))

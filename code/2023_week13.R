@@ -93,7 +93,7 @@ country_map |>
   )
 
 ggsave(
-  filename = "images/2023_week13.png",
+  filename = here::here("images", "2023_week13.png"),
   height = 5.3,
   width = 9
 )

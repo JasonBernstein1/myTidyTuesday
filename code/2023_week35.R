@@ -91,4 +91,4 @@ tab <- df |>
 
 tab
 
-gtsave(tab, filename = "images/2023_week35.png")
+gtsave(tab, filename = here::here("images", "2023_week35.png"))

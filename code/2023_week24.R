@@ -88,4 +88,4 @@ item_counts <- df |>
 
 item_counts
 
-gtsave(item_counts, filename = "images/2023_week24.png")
+gtsave(item_counts, filename = here::here("images", "2023_week24.png"))

@@ -57,7 +57,7 @@ episodes |>
   )
 
 ggsave(
-  filename = "images/2025_week05.png",
+  filename = here::here("images", "2025_week05.png"),
   height = 9,
   width = 9
 )

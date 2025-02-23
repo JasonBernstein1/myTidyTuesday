@@ -120,7 +120,7 @@ sightings_map |>
   )
 
 ggsave(
-  filename = "images/2023_week25.png",
+  filename = here::here("images", "2023_week25.png"),
   height = 4,
   width = 7
 )
