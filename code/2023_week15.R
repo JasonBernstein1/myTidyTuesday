@@ -86,7 +86,7 @@ df |>
     axis.title = element_text(size = 18),
     legend.background = element_rect(fill = "#FFFAFA", color = "black"),
     legend.key = element_rect(fill = "#FFFAFA"),
-    legend.position = c(0.855, 0.125),
+    legend.position.inside = c(0.855, 0.125),
     legend.text = element_text(size = 14),
     legend.title = element_text(size = 14),
     panel.background = element_rect(fill = "#FFFAFA"),
