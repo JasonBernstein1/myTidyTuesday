@@ -48,7 +48,7 @@ df |>
 rank_R <- df |>
   filter(title == "R") |>
   select(rank) |>
-  as.numeric()
+  pull()
 
 # plot programming languages by number of jobs per user
 df |>
