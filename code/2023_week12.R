@@ -32,7 +32,7 @@ df <- tuesdata$languages |>
     type = case_when(
       type == "idl" ~ "interfaceDefinitionLanguage",
       type == "pl" ~ "programmingLanguage",
-      TRUE ~ type
+      .default = type
     ),
     # improve formatting of type variable for clearer plot legend
     type = camelcase_to_sentence(type),
