@@ -53,7 +53,10 @@ rank_R <- df |>
 # plot programming languages by number of jobs per user
 df |>
   slice_max(jobs_per_user, n = rank_R) |>
-  ggplot(aes(x = reorder(title, jobs_per_user), y = jobs_per_user)) +
+  ggplot(aes(
+    x = forcats::fct_reorder(title, jobs_per_user),
+    y = jobs_per_user
+  )) +
   geom_col(aes(fill = type), width = 0.75) +
   geom_label(
     aes(label = title, fill = type),
