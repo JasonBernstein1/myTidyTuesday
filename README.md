@@ -1,7 +1,5 @@
 # TidyTuesday
 
-A repo for wrangling and visualizing TidyTuesday data.
- 
-The TidyTuesday project is described here:
-https://github.com/rfordatascience/tidytuesday
+A repo for wrangling and visualizing [TidyTuesday](https://github.com/rfordatascience/tidytuesday) data.
 
+Browse my visualizations here: https://jasonbernstein1.github.io/myTidyTuesday/
