@@ -71,11 +71,13 @@ def generate():
         )
         cards_html += f"""
     <article class="card">
-      <h2>{p["title"]}</h2>
       <a href="{p["image_url"]}" target="_blank" rel="noopener">
         <img src="{p["image_url"]}" alt="TidyTuesday {p["title"]}" loading="lazy">
       </a>
-      <footer>{code_link}</footer>
+      <footer>
+        <span class="card-label">{p["title"]}</span>
+        {code_link}
+      </footer>
     </article>"""
 
     html = f"""<!DOCTYPE html>
@@ -115,25 +117,27 @@ def generate():
       display: flex;
       flex-direction: column;
     }}
-    .card h2 {{
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.75rem 1rem 0.5rem;
-      color: #333;
-    }}
     .card a img {{
       display: block;
       width: 100%;
       height: auto;
-      border-bottom: 1px solid #eee;
     }}
     .card footer {{
       padding: 0.6rem 1rem;
       font-size: 0.875rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }}
+    .card-label {{
+      color: #555;
+      font-weight: 600;
     }}
     .card footer a {{
       color: #0366d6;
       text-decoration: none;
+      white-space: nowrap;
     }}
     .card footer a:hover {{ text-decoration: underline; }}
   </style>
