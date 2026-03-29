@@ -47,15 +47,17 @@ def generate():
             continue
         year, week = key
         code_file = find_code_file(stem)
-        posts.append({
-            "stem": stem,
-            "year": year,
-            "week": week,
-            "title": make_title(year, week),
-            "image_url": f"{RAW_BASE}/images/{img_path.name}",
-            "code_url": f"{GITHUB_BASE}/code/{code_file}" if code_file else None,
-            "code_file": code_file,
-        })
+        posts.append(
+            {
+                "stem": stem,
+                "year": year,
+                "week": week,
+                "title": make_title(year, week),
+                "image_url": f"{RAW_BASE}/images/{img_path.name}",
+                "code_url": f"{GITHUB_BASE}/code/{code_file}" if code_file else None,
+                "code_file": code_file,
+            }
+        )
 
     # Newest first
     posts.sort(key=lambda p: (p["year"], p["week"]), reverse=True)
@@ -81,7 +83,7 @@ def generate():
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My TidyTuesday</title>
+  <title>My TidyTuesday Visualizations</title>
   <style>
     *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
     body {{
