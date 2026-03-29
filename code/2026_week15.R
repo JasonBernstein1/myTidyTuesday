@@ -51,6 +51,6 @@ ggplot() +
 
 ggsave(
   filename = here::here("images", "2026_week15.png"),
-  height = 5,
+  height = 5.75,
   width = 8
 )
